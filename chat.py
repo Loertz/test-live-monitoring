@@ -77,16 +77,7 @@ class ChatBackend(object):
 
     def update(self):
 
-        activity_data = [
-            {
-                "name": "Johnny",
-                "n": i,
-                "lastEvent": "ABSENCE",
-                "tempsdemarche": 0,
-                "acti": ""
-            }
-            for i in range(1, 16)
-        ]
+        activity_data = json.loads(self.pubsub.listen())
 
         urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
