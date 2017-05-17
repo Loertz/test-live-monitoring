@@ -8,21 +8,17 @@ if (window.location.protocol == "https:") {
 var initial=false;
 var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
-if (!initial){
-  inbox.onmessage = function(message) {
-    var data_n = eval(message.data);
-    console.log(data_n);
-    if (data != data_n) {
-      var data = data_n;
-      console.log('initialisation');
+inbox.onmessage = function(message) {
+  if (!initial) {
+    var data = JSON.pars(message)
       data.forEach(function create(val) {
 
         var node = document.createElement("div");
         node.setAttribute("class","floating-box");
-        node.id = "div"+val["n"];
+        node.id = "div"+val.n;
 
         var resd = document.createElement('h2');
-        resd.innerHTML = val["name"];
+        resd.innerHTML = val.name;
 
         var cha = document.createElement('h3');
         cha.innerHTML = "Chambre :  n°" + val["n"];
@@ -37,14 +33,13 @@ if (!initial){
         node.appendChild(dur);
 
         monitoring.appendChild(node);
+
       });
+
+     console.log(initial);
       initial=true;
       console.log(initial);
-    };
-  };
-} else {
 
-  inbox.onmessage = function(message){
 
       var data = eval(message.data);
       console.log('update');
