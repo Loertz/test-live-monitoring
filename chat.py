@@ -41,8 +41,8 @@ class ChatBackend(object):
                     'name': 'Johnny',
                     'n': i,
                     'lastEvent': 'Presence',
-                    'tempsdemarche': 5,
-                    'acti': .'111111111111'
+                    'tempsdemarche': 10,
+                    'acti': '111111111111'
                 }
                 for i in range(1, 16)
             })
