@@ -120,8 +120,8 @@ class ChatBackend(object):
         answer = grequests.map(rs)
         data = activity_data
 
-        for i, room in enumerate(data):
-            ro_n = json.loads(answer[int(i)].text)
+        for key,room in data:
+            ro_n = json.loads(answer[int(key)].text)
             room["lastEvent"] = ro_n["room"]["lastEvent"]
             if room["lastEvent"] in eventactif:
                 room["acti"] += "1"
