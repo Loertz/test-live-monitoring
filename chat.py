@@ -77,7 +77,7 @@ class ChatBackend(object):
 
     def update(self):
 
-        activity_data = json.loads(self.pubsub.listen())
+        activity_data = json.loads(self.pubsub.listen().get('data'))
 
         urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
