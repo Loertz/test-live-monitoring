@@ -9,8 +9,8 @@ var initial=false;
 var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 inbox.onmessage = function(message) {
+  var data = JSON.parse(message.data);
   if (!initial) {
-    var data = JSON.pars(message)
       data.forEach(function create(val) {
 
         var node = document.createElement("div");
@@ -40,10 +40,8 @@ inbox.onmessage = function(message) {
       initial=true;
       console.log(initial);
 
-
-      var data = eval(message.data);
       console.log('update');
-      console.log(message);
+      console.log(message.data);
 
       data.forEach(function creat( val) {
 
