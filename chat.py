@@ -87,10 +87,10 @@ class ChatBackend(object):
             if duration < interval:
                 gevent.sleep(interval - duration)
 
-    def update(self):
+    def update():
 
-        activity_data = {
-            str(i): {
+        activity_data = [
+            {
                 "name": "Johnny",
                 "n": i,
                 "lastEvent": "ABSENCE",
@@ -98,7 +98,7 @@ class ChatBackend(object):
                 "acti": ""
             }
             for i in range(1, 16)
-        }
+        ]
 
         urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
@@ -110,32 +110,41 @@ class ChatBackend(object):
             '_gid': "GA1.3.903882648.1494921861",
         }
 
+        # Genere les urls pour les pool des données
         rs = (grequests.get(
-            urlbase + str(key),
+            urlbase + str(key["n"]),
             cookies=cookies
         )
             for key in activity_data
         )
 
+        # Fais la requetes des données et les stocke sous
+        # answer = (reponse1,reponse2,...,response n)
         answer = grequests.map(rs)
         data = activity_data
+        # print(answer)
+        # pour chaque chambre de la liste
+        for room in data:
 
-        for key,room in data.items():
-            ro_n = json.loads(answer[int(key)].text)
-            room["lastEvent"] = ro_n["room"]["lastEvent"]
-            if room["lastEvent"] in eventactif:
-                room["acti"] += "1"
-            else:
-                room["acti"] += "0"
+            # print(answer[int(room["n"])].text)
+            ro_n = json.loads(answer[int(room["n"]) - 1].text)
+            room['lastEvent'] = ro_n['room']['lastEvent']
 
-            if "00000" in room["acti"] or "1" not in room["acti"]:
-                room["tempsdemarche"] = 0
-                room["acti"] = ""
+            if room['lastEvent'] in eventactif:
+                room['acti'] += '1'
             else:
-                room["tempsdemarche"] = int(len(room["acti"]) / 5) * 5
+                room['acti'] += '0'
+
+            if '00000' in room['acti'] or '1' not in room['acti']:
+                room['tempsdemarche'] = 0
+                room['acti'] = ''
+            else:
+                room['tempsdemarche'] = int(len(room['acti']) / 5) * 5
             # update data
+        # print(data)
 
         message = json.dumps(data)
+        print(message)
         # app.logger.info(u'Inserting message: {}'.format(message))
         redis.publish(REDIS_CHAN, message)
 
