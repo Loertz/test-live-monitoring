@@ -89,7 +89,7 @@ class ChatBackend(object):
         ]
 
         urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
-        eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
+        eventactif = ('BEDROOM', 'BATHROOM', 'FALL','ABSENCE')
 
         cookies = {
             'AWSELB': '8BCBC7510619CE27DBBB694C8CC7E2F7DBEB7FF9997C562F58EF73D4C9B622B6CAF89A6E1F6146C1DFBCA6F975C6A21363A378B900A183886E855F85B3F76B607892CC1D99100F3545F02F3166B37746BF29432B23',
