@@ -40,9 +40,9 @@ class ChatBackend(object):
                 str(i): {
                     'name': 'Johnny',
                     'n': i,
-                    'lastEvent': 'ABSENCE',
-                    'tempsdemarche': 0,
-                    'acti': ''
+                    'lastEvent': 'Presence',
+                    'tempsdemarche': 5,
+                    'acti': .'111111111111'
                 }
                 for i in range(1, 16)
             })
