@@ -114,7 +114,7 @@ class ChatBackend(object):
             urlbase + str(key),
             cookies=cookies
         )
-            for key, value in activity_data
+            for key in activity_data
         )
 
         answer = grequests.map(rs)
