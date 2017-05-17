@@ -87,7 +87,7 @@ class ChatBackend(object):
             if duration < interval:
                 gevent.sleep(interval - duration)
 
-    def update():
+    def update(self):
 
         activity_data = [
             {
