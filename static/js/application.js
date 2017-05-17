@@ -10,8 +10,11 @@ var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 if (!initial){
   inbox.onmessage = function(message) {
-    var data_n = message.data
+    var data_n = eval(message.data)
     console.log(data_n);
+      $.each(data, function(i, item) {
+        alert(data[i].PageName);
+      });​
     if (data != data_n) {
       var data = data_n;
       console.log('initialisation');
@@ -46,7 +49,7 @@ if (!initial){
 
   inbox.onmessage = function(message){
 
-      var data = JSON.parse(message.data);
+      var data = eval(message.data);
       console.log('update');
       console.log(message);
 
