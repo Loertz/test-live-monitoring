@@ -13,7 +13,7 @@ if (!initial){
     var data_n = eval(message.data);
     console.log(data_n);
     $.each(data_n, function( item) {
-      console.log(item["n"]);
+      console.log(item.n);
     });​
     if (data != data_n) {
       var data = data_n;
