@@ -21,11 +21,11 @@ inbox.onmessage = function(message) {
         resd.innerHTML = val.name;
 
         var cha = document.createElement('h3');
-        cha.innerHTML = "Chambre :  n°" + val["n"];
+        cha.innerHTML = "Chambre :  n°" + val.n;
 
         var dur = document.createElement('h4');
-        dur.innerHTML = "Durée de l'activitée : " + val["tempdemarche"]
-        dur.id = val["n"];
+        dur.innerHTML = "Durée de l'activitée : " + val.tempdemarche
+        dur.id = val.n;
 
 
         node.appendChild(resd);
@@ -45,45 +45,45 @@ inbox.onmessage = function(message) {
 
       data.forEach(function creat( val) {
 
-          if (val["acti"] == "") {
+          if (val.acti == "") {
 
-              document.getElementById(val["n"]).innerHTML ="Durée de l'activitée : " + val["tempdemarche"]
-              document.getElementById("div"+val["n"]).style.display = "none";
-              /*document.getElementById("div"+val["n"]).style.backgroundColor = "rgb(63, 63, 78)"*/
+              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tempdemarche
+              document.getElementById("div"+val.n).style.display = "none";
+              /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
           }
 
-          else if (val["acti"] =="1") {
-              document.getElementById(val["n"]).innerHTML ="Durée de l'activitée : " + val["tempdemarche"]
+          else if (val.acti =="1") {
+              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tempdemarche
                 /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
-                if (val["lastEvent"] == "BEDROOM") {
-                  document.getElementById("div"+val["n"]).style.backgroundColor = "#8C8910"
+                if (val.lastEvent == "BEDROOM") {
+                  document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
                    }
-                else if (val["lastEvent"] == "BATHROOM") {
-                  document.getElementById("div"+val["n"]).style.backgroundColor ="#1D7FB2"
+                else if (val.lastEvent == "BATHROOM") {
+                  document.getElementById("div"+val.n).style.backgroundColor ="#1D7FB2"
                 }
-                else if (val["lastEvent"] == "FALL") {
-                  document.getElementById("div"+val["n"]).style.backgroundColor = "#CA1725"
+                else if (val.lastEvent == "FALL") {
+                  document.getElementById("div"+val.n).style.backgroundColor = "#CA1725"
                 }
                 else {
-                  /*document.getElementById("div"+val["n"]).style.backgroundColor = "rgb(63, 63, 78)"*/
+                  /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
                 }
-                document.getElementById("div"+val["n"]).style.display = "inline";
+                document.getElementById("div"+val.n).style.display = "inline";
             }
 
           else {
-              document.getElementById(val["n"]).innerHTML ="Durée de l'activitée : " + val["tempdemarche"]
+              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tempdemarche
                 /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
-                if (val["lastEvent"] == "BEDROOM") {
-                  document.getElementById("div"+val["n"]).style.backgroundColor = "#8C8910"
+                if (val.lastEvent == "BEDROOM") {
+                  document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
                 }
-                else if (val["lastEvent"] == "BATHROOM") {
-                  document.getElementById("div"+val["n"]).style.backgroundColor = "#1D7FB2"
+                else if (val.lastEvent == "BATHROOM") {
+                  document.getElementById("div"+val.n).style.backgroundColor = "#1D7FB2"
                 }
-                else if (val["lastEvent"] == "FALL") {
-                  document.getElementById("div"+val["n"]).style.backgroundColor = "#CA1725"
+                else if (val.lastEvent == "FALL") {
+                  document.getElementById("div"+val.n).style.backgroundColor = "#CA1725"
                 }
                 else {
-                  /*document.getElementById("div"+val["n"]).style.backgroundColor = "rgb(63, 63, 78)"*/
+                  /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
                 };
           };
 
