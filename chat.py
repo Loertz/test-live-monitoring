@@ -61,7 +61,7 @@ class ChatBackend(object):
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
-        gevent.spawn(self.run_time, self.update, 60)
+        gevent.spawn(self.run_time, self.update, 30)
         for data in self.__iter_data():
             for client in self.clients:
                 gevent.spawn(self.send, client, data)
@@ -70,9 +70,6 @@ class ChatBackend(object):
         while True:
             before = time.time()
             function(*args, **kwargs)
-
-            for client in self.clients:
-                gevent.spawn(self.send, client, self.activity_data)
 
             duration = time.time() - before
             if duration < interval:
