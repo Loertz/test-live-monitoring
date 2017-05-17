@@ -90,7 +90,7 @@ class ChatBackend(object):
     def update(self):
 
         activity_data = {
-            string(i): {
+            str(i): {
                 "name": "Johnny",
                 "n": i,
                 "lastEvent": "ABSENCE",
