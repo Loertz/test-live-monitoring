@@ -11,10 +11,7 @@ var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 if (!initial){
   inbox.onmessage = function(message) {
     var data_n = eval(message.data);
-    console.log(data_n);
-    JQuery.each(data_n, function( item) {
-      console.log(item.n);
-      });​
+    console.log(data_n[1].n);
     if (data != data_n) {
       var data = data_n;
       console.log('initialisation');
