@@ -111,10 +111,10 @@ class ChatBackend(object):
         }
 
         rs = (grequests.get(
-            urlbase + str(value["n"]),
+            urlbase + str(key),
             cookies=cookies
         )
-            for value in activity_data
+            for key, value in activity_data
         )
 
         answer = grequests.map(rs)
