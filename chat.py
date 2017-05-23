@@ -39,7 +39,7 @@ class ChatBackend(object):
         {
             "name": "Johnny",
             "n": i,
-            "lastEvent": "ABSENCE",
+            "lastEvent": "BEDROOM",
             "tempsdemarche": 0,
             "acti": ""
         }
