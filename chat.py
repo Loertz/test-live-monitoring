@@ -65,11 +65,10 @@ class ChatBackend(object):
         Automatically discards invalid connections."""
         try:
             client.send(data)
-            print(json.loads(data)[1]["acti"])
-        except Exception as e:
+            print(client.send(data))
+        except Exception:
             self.clients.remove(client)
             print('erreur')
-            print(e.code)
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
