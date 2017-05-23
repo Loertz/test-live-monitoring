@@ -38,61 +38,59 @@ inbox.onmessage = function(message) {
         monitoring.appendChild(node);
 
       });
+    };
 
-     console.log(initial);
-      initial=true;
-      console.log(initial);
+   console.log(initial);
+    initial=true;
+    console.log(initial);
 
-      console.log('update');
-      console.log(message.data);
+    console.log('update');
+    console.log(message.data);
 
-      data.forEach(function creat( val) {
+    data.forEach(function creat( val) {
 
-          if (val.acti == "") {
+        if (val.acti == "") {
 
-              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
-              document.getElementById("div"+val.n).style.display = "none";
-              /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
+            document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
+            document.getElementById("div"+val.n).style.display = "none";
+            /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
+        }
+
+        else if (val.acti =="1") {
+            document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
+              /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
+              if (val.lastEvent == "BEDROOM") {
+                document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
+                 }
+              else if (val.lastEvent == "BATHROOM") {
+                document.getElementById("div"+val.n).style.backgroundColor ="#1D7FB2"
+              }
+              else if (val.lastEvent == "FALL") {
+                document.getElementById("div"+val.n).style.backgroundColor = "#CA1725"
+              }
+              else {
+                /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
+              }
+              document.getElementById("div"+val.n).style.display = "inline";
           }
 
-          else if (val.acti =="1") {
-              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
-                /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
-                if (val.lastEvent == "BEDROOM") {
-                  document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
-                   }
-                else if (val.lastEvent == "BATHROOM") {
-                  document.getElementById("div"+val.n).style.backgroundColor ="#1D7FB2"
-                }
-                else if (val.lastEvent == "FALL") {
-                  document.getElementById("div"+val.n).style.backgroundColor = "#CA1725"
-                }
-                else {
-                  /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
-                }
-                document.getElementById("div"+val.n).style.display = "inline";
-            }
-
-          else {
-              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
-                /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
-                if (val.lastEvent == "BEDROOM") {
-                  document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
-                }
-                else if (val.lastEvent == "BATHROOM") {
-                  document.getElementById("div"+val.n).style.backgroundColor = "#1D7FB2"
-                }
-                else if (val.lastEvent == "FALL") {
-                  document.getElementById("div"+val.n).style.backgroundColor = "#CA1725"
-                }
-                else {
-                  /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
-                };
-          };
-
-      });
-  };
-
+        else {
+            document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
+              /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
+              if (val.lastEvent == "BEDROOM") {
+                document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
+              }
+              else if (val.lastEvent == "BATHROOM") {
+                document.getElementById("div"+val.n).style.backgroundColor = "#1D7FB2"
+              }
+              else if (val.lastEvent == "FALL") {
+                document.getElementById("div"+val.n).style.backgroundColor = "#CA1725"
+              }
+              else {
+                /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
+              };
+        };
+    });
 };
 
 
