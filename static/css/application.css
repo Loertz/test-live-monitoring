@@ -77,8 +77,9 @@ SIDE NAVIGATION MENU
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-    transition: margin-left .5s;
-    padding: 20px;
+    transition: margin-right .5s;
+    padding: 0 px;
+    margin-left : 20%;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
@@ -93,14 +94,10 @@ STYLE : BOX OF THE MONITORING APPLICATION
 -----------------------------------------*/
 
 .floating-box {
-    bleu :#1D7FB2;
-    vert : #8C8910;
-    rouge : #CA1725;
-    gris :rgb(63, 63, 78);
 
     float: left;
-    width: 16%;
-    height: 150px;
+    width: 25%;
+    height: 50px;
     margin: 2px;
     padding : 0px;
     background : #1D7FB2;
@@ -110,14 +107,15 @@ STYLE : BOX OF THE MONITORING APPLICATION
 
 .nom{
     color: #666;
-    font-size: 26px;
+    font-size: 10px;
     font-weight: normal;
     letter-spacing: 2px;
+    margin : 1px;
 }
 
 .contenu{
     color: #777;
-    font-size: 15px;
+    font-size: 8px;
     font-weight: 300;
     line-height: 26px;
     letter-spacing: 0.2px;
