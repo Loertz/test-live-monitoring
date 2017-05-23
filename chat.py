@@ -36,16 +36,15 @@ class ChatBackend(object):
         self.pubsub = redis.pubsub()
         self.pubsub.subscribe(REDIS_CHAN)
         self.activity_data = [
-        {
-            "name": "Johnny",
-            "n": i,
-            "lastEvent": "BEDROOM",
-            "tmc": 0,
-            "acti": ""
-        }
-        for i in range(1, 16)
-    ]
-
+            {
+                "name": "Johnny",
+                "n": i,
+                "lastEvent": "BEDROOM",
+                "tmc": 0,
+                "acti": ""
+            }
+            for i in range(1, 16)
+        ]
 
     def __iter_data(self):
         for message in self.pubsub.listen():
