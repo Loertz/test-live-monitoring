@@ -23,7 +23,7 @@ function initiate (data) {
     var cha = document.createElement('h6');
     cha.innerHTML = "Chambre :  n°" + val.n;
 
-    var dur = document.createElement('h4');
+    var dur = document.createElement('h6');
 
     dur.innerHTML = "Durée de l'activitée : " + val.tmc
     dur.id = val.n;
@@ -37,9 +37,6 @@ function initiate (data) {
 
   });
 };
-
-
-
 
 
 function update_css(data)
@@ -66,7 +63,7 @@ function update_css(data)
             else {
               /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
             }
-            document.getElementById("div"+val.n).style.display = "inline";
+            document.getElementById("div"+val.n).style.display = "block";
         }
 
       else {
