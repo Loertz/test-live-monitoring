@@ -65,10 +65,9 @@ class ChatBackend(object):
         Automatically discards invalid connections."""
         try:
             client.send(data)
-            print(client.send(data))
         except Exception:
             self.clients.remove(client)
-            print('erreur')
+            print(client)
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
@@ -137,7 +136,6 @@ class ChatBackend(object):
         # print(data)
 
         message = json.dumps(data)
-        print(message)
         # app.logger.info(u'Inserting message: {}'.format(message))
         redis.publish(REDIS_CHAN, message)
 
