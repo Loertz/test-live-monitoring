@@ -18,7 +18,7 @@ function initiate (data) {
     node.id = "div"+val.n;
 
     var resd = document.createElement('h5');
-    resd.innerHTML = val.name +"/br" + "Chambre :  n°" + val.n;
+    resd.innerHTML = val.name +"\n" + "Chambre :  n°" + val.n;
 
     var dur = document.createElement('h6');
 
@@ -38,7 +38,7 @@ function update_css(data)
 {data.forEach(function creat( val) {
       if (val.acti == "") {
 
-          document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
+          document.getElementById(val.n).innerHTML = val.tmc
           document.getElementById("div"+val.n).style.display = "none";
           /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
       }
