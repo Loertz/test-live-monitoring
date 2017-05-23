@@ -78,7 +78,7 @@ class ChatBackend(object):
 
     def run_time(self, function, interval, *args, **kwargs):
         while True:
-
+            gevent.sleep(interval / 5)
             duration = time.time() - float(redis.get('before'))
             print(duration)
             if duration > interval:
@@ -86,7 +86,6 @@ class ChatBackend(object):
                 redis.set('time', time.time())
                 print('updated')
                 redis.publish(REDIS_CHAN, redis.get('activity_data'))
-            gevent.sleep(interval / 5)
 
     def update(self):
 
