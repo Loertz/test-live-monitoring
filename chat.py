@@ -58,16 +58,15 @@ class ChatBackend(object):
         """Register a WebSocket connection for Redis updates."""
         self.clients.append(client)
         # app.logger.info(u'Inserting message: {}'.format(message))
-        gevent.spawn(self.send, client, redis.get('activity_data'))
+        # gevent.spawn(self.send, client, redis.get('activity_data'))
 
     def send(self, client, data):
         """Send given data to the registered client.
         Automatically discards invalid connections."""
-        client.send(data)
-        # try:
-        #     print(client)
-        # except Exception:
-        #     self.clients.remove(client)
+        try:
+            print(client)
+        except Exception:
+            self.clients.remove(client)
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""

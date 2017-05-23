@@ -79,7 +79,7 @@ SIDE NAVIGATION MENU
 #main {
     transition: margin-right .5s;
     padding: 0 px;
-    margin-left : 20%;
+    margin-right : 20%;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */

@@ -18,19 +18,14 @@ function initiate (data) {
     node.id = "div"+val.n;
 
     var resd = document.createElement('h5');
-    resd.innerHTML = val.name;
-
-    var cha = document.createElement('h6');
-    cha.innerHTML = "Chambre :  n°" + val.n;
+    resd.innerHTML = val.name +"/br" + "Chambre :  n°" + val.n;
 
     var dur = document.createElement('h6');
 
-    dur.innerHTML = "Durée de l'activitée : " + val.tmc
+    dur.innerHTML = val.tmc
     dur.id = val.n;
 
-
     node.appendChild(resd);
-    node.appendChild(cha);
     node.appendChild(dur);
 
     monitoring.appendChild(node);
