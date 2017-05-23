@@ -65,22 +65,22 @@ class ChatBackend(object):
         Automatically discards invalid connections."""
         try:
             client.send(data)
-        except Exception:None
+        except Exception:
+            None
             # client.send('error')
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
         gevent.spawn(self.run_time, self.update, 30)
+        for data in self.__iter_data():
+            for client in self.clients:
+                gevent.spawn(self.send, client, data)
 
     def run_time(self, function, interval, *args, **kwargs):
         while True:
             before = time.time()
             function(*args, **kwargs)
             duration = time.time() - before
-
-            for data in self.__iter_data():
-                for client in self.clients:
-                    gevent.spawn(self.send, client, data)
 
             if duration < interval:
                 gevent.sleep(interval - duration)
