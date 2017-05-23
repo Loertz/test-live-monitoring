@@ -79,7 +79,7 @@ class ChatBackend(object):
     def run_time(self, function, interval, *args, **kwargs):
         while True:
 
-            duration = time.time() - int(redis.get('before'))
+            duration = time.time() - float(redis.get('before'))
             if duration > interval:
                 function(*args, **kwargs)
                 redis.set('time', time.time())
