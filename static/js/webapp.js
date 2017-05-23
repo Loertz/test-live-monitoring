@@ -17,10 +17,10 @@ function initiate (data) {
     node.setAttribute("class","floating-box");
     node.id = "div"+val.n;
 
-    var resd = document.createElement('h2');
+    var resd = document.createElement('h5');
     resd.innerHTML = val.name;
 
-    var cha = document.createElement('h3');
+    var cha = document.createElement('h6');
     cha.innerHTML = "Chambre :  n°" + val.n;
 
     var dur = document.createElement('h4');
