@@ -36,7 +36,7 @@ class ChatBackend(object):
         self.pubsub = redis.pubsub()
         self.pubsub.subscribe(REDIS_CHAN)
         self.time = time.time()
-        self.activity_data = [
+        self.activity_data = json.dumps([
             {
                 "name": "Johnny",
                 "n": i,
@@ -45,7 +45,7 @@ class ChatBackend(object):
                 "acti": ""
             }
             for i in range(1, 16)
-        ]
+        ])
 
     def __iter_data(self):
         for message in self.pubsub.listen():
