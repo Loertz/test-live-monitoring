@@ -28,7 +28,7 @@ sockets = Sockets(app)
 redis = redis.from_url(REDIS_URL)
 
 
-class ChatBackend(object):
+class LiveMonitoringBackend(object):
     """Interface for registering and updating WebSocket clients."""
 
     def __init__(self):
@@ -63,6 +63,7 @@ class ChatBackend(object):
     def send(self, client, data):
         """Send given data to the registered client.
         Automatically discards invalid connections."""
+        client.send(data)
         try:
             print(client)
         except Exception:
@@ -84,7 +85,7 @@ class ChatBackend(object):
                 redis.set('before', time.time())
                 print('updated')
                 redis.publish(REDIS_CHAN, redis.get('activity_data'))
-            gevent.sleep(interval / 5)
+            gevent.sleep(interval )
 
     def update(self):
 
@@ -146,8 +147,8 @@ class ChatBackend(object):
         gevent.spawn(self.run)
 
 
-chats = ChatBackend()
-chats.start()
+livemonitoring = LiveMonitoringBackend()
+livemonitoring.start()
 
 
 @app.route('/')
@@ -169,11 +170,11 @@ def hello():
 
 @sockets.route('/receive')
 def outbox(ws):
-    """Sends outgoing chat messages, via `ChatBackend`."""
-    chats.register(ws)
+    """Sends outgoing chat messages, via `LiveMonitoringBackend`."""
+    livemonitoring.register(ws)
 
     while not ws.closed:
 
-        # Context switch while `ChatBackend.start'
+        # Context switch while `LiveMonitoringBackend.start'
         # is running in the background.
         gevent.sleep(0.1)
