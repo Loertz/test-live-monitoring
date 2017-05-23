@@ -35,6 +35,7 @@ class ChatBackend(object):
         self.clients = list()
         self.pubsub = redis.pubsub()
         self.pubsub.subscribe(REDIS_CHAN)
+        self.time = time.time()
         self.activity_data = [
             {
                 "name": "Johnny",
@@ -69,19 +70,21 @@ class ChatBackend(object):
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
-        gevent.spawn(self.run_time, self.update, 15)
+        gevent.spawn(self.run_time, self.update, 60)
         for data in self.__iter_data():
             for client in self.clients:
                 gevent.spawn(self.send, client, data)
 
     def run_time(self, function, interval, *args, **kwargs):
         while True:
-            before = time.time()
-            function(*args, **kwargs)
-            duration = time.time() - before
 
-            if duration < interval:
-                gevent.sleep(interval - duration)
+            duration = time.time() - self.time
+            if duration > interval:
+                self.activity_data = function(*args, **kwargs)
+                self.time = time.time()
+                print('updated')
+            redis.publis(REDIS_CHAN, self.activity_data)
+            gevent.sleep(interval / 10)
 
     def update(self):
 
@@ -135,7 +138,7 @@ class ChatBackend(object):
 
         message = json.dumps(data)
         # app.logger.info(u'Inserting message: {}'.format(message))
-        redis.publish(REDIS_CHAN, message)
+        # redis.publish(REDIS_CHAN, message)
 
         return message
 
