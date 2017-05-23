@@ -103,7 +103,7 @@ console.log('update');
 
 
 inbox.onclose = function(error){
-    console.log(error);
+    console.log(error.code);
     this.inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 
 };
