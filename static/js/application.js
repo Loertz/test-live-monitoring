@@ -104,9 +104,9 @@ console.log('update');
   }, 800);*/
 
 
-inbox.onclose = function(){
-    console.log('inbox closed');
-    this.inbox = new WebSocket(inbox.url);
+inbox.onclose = function(error){
+    console.log(error);
+    this.inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 
 };
 
