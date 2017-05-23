@@ -51,7 +51,7 @@ class ChatBackend(object):
         for message in self.pubsub.listen():
             data = message.get('data')
             if message['type'] == 'message':
-                app.logger.info(u'Sending message: {}'.format(data))
+                # app.logger.info(u'Sending message: {}'.format(data))
                 yield data
 
     def register(self, client):
@@ -66,8 +66,8 @@ class ChatBackend(object):
         try:
             client.send(data)
         except Exception:
-            None
-            # client.send('error')
+            self.clients.remove(client)
+            print(Exception.text)
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
