@@ -65,7 +65,7 @@ class ChatBackend(object):
         Automatically discards invalid connections."""
         try:
             client.send(data)
-            print(data)
+            print(data[1]["acti"])
         except Exception as e:
             self.clients.remove(client)
             print('erreur')
