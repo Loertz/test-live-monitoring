@@ -10,6 +10,7 @@ var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive":332
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 
 inbox.onmessage = function(message) {
+  console.log(message.data);
   var data = JSON.parse(message.data);
   if (!initial) {
       data.forEach(function create(val) {

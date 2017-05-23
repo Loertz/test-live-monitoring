@@ -140,7 +140,7 @@ class ChatBackend(object):
         # app.logger.info(u'Inserting message: {}'.format(message))
         redis.publish(REDIS_CHAN, message)
 
-        return data
+        return message
 
     def start(self):
         """Maintains Redis subscription in the background."""
