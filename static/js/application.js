@@ -26,7 +26,7 @@ inbox.onmessage = function(message) {
 
         var dur = document.createElement('h4');
 
-        dur.innerHTML = "Durée de l'activitée : " + val.tempdemarche
+        dur.innerHTML = "Durée de l'activitée : " + val.tmc
         dur.id = val.n;
 
 
@@ -49,13 +49,13 @@ inbox.onmessage = function(message) {
 
           if (val.acti == "") {
 
-              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tempdemarche
+              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
               document.getElementById("div"+val.n).style.display = "none";
               /*document.getElementById("div"+val.n).style.backgroundColor = "rgb(63, 63, 78)"*/
           }
 
           else if (val.acti =="1") {
-              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tempdemarche
+              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
                 /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
                 if (val.lastEvent == "BEDROOM") {
                   document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
@@ -73,7 +73,7 @@ inbox.onmessage = function(message) {
             }
 
           else {
-              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tempdemarche
+              document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
                 /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
                 if (val.lastEvent == "BEDROOM") {
                   document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"

@@ -40,7 +40,7 @@ class ChatBackend(object):
             "name": "Johnny",
             "n": i,
             "lastEvent": "BEDROOM",
-            "tempsdemarche": 0,
+            "tmc": 0,
             "acti": ""
         }
         for i in range(1, 16)
@@ -127,10 +127,10 @@ class ChatBackend(object):
                 room['acti'] += '0'
 
             if '00000' in room['acti'] or '1' not in room['acti']:
-                room['tempsdemarche'] = 0
+                room['tmc'] = 0
                 room['acti'] = ''
             else:
-                room['tempsdemarche'] = int(len(room['acti']) / 5) * 5
+                room['tmc'] = int(len(room['acti']) / 5) * 5
             # update data
         # print(data)
 

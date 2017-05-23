@@ -9,7 +9,7 @@ def update():
             "name": "Johnny",
             "n": i,
             "lastEvent": "ABSENCE",
-            "tempsdemarche": 0,
+            "tmc": 0,
             "acti": ""
         }
         for i in range(1, 16)
