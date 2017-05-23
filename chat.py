@@ -35,8 +35,8 @@ class ChatBackend(object):
         self.clients = list()
         self.pubsub = redis.pubsub()
         self.pubsub.subscribe(REDIS_CHAN)
-        self.time = time.time()
-        self.activity_data = json.dumps([
+        redis.set('before', time.time())
+        redis.set('activity_data', json.dumps([
             {
                 "name": "Johnny",
                 "n": i,
@@ -45,7 +45,7 @@ class ChatBackend(object):
                 "acti": ""
             }
             for i in range(1, 16)
-        ])
+        ]))
 
     def __iter_data(self):
         for message in self.pubsub.listen():
@@ -58,7 +58,7 @@ class ChatBackend(object):
         """Register a WebSocket connection for Redis updates."""
         self.clients.append(client)
         # app.logger.info(u'Inserting message: {}'.format(message))
-        gevent.spawn(self.send, client, self.activity_data)
+        gevent.spawn(self.send, client, redis.get('activity_data'))
 
     def send(self, client, data):
         """Send given data to the registered client.
@@ -79,23 +79,22 @@ class ChatBackend(object):
     def run_time(self, function, interval, *args, **kwargs):
         while True:
 
-            duration = time.time() - self.time
+            duration = time.time() - int(redis.get('before'))
             if duration > interval:
                 function(*args, **kwargs)
-                self.time = time.time()
+                redis.set('time', time.time())
                 print('updated')
-                redis.publish(REDIS_CHAN, self.activity_data)
+                redis.publish(REDIS_CHAN, redis.get('activity_data'))
             gevent.sleep(interval / 5)
 
     def update(self):
-
-        # self.activity_data = json.loads(self.pubsub.listen().get('data'))
 
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
 
         # cookies = {
-        #     'AWSELB': '8BCBC7510619CE27DBBB694C8CC7E2F7DBEB7FF9997C562F58EF73D4C9B622B6CAF89A6E1F6146C1DFBCA6F975C6A21363A378B900A183886E855F85B3F76B607892CC1D99100F3545F02F3166B37746BF29432B23',
+        #     'AWSELB':
+# '8BCBC7510619CE27DBBB694C8CC7E2F7DBEB7FF9997C562F58EF73D4C9B622B6CAF89A6E1F6146C1DFBCA6F975C6A21363A378B900A183886E855F85B3F76B607892CC1D99100F3545F02F3166B37746BF29432B23',
         #     'JSESSIONID': '736FEE21BD03C31BCDDDAE9D9858D265',
         #     '_ga': "GA1.3.755786443.1493122168",
         #     '_gid': "GA1.3.903882648.1494921861",
@@ -106,13 +105,13 @@ class ChatBackend(object):
         #     urlbase + str(key["n"]),
         #     cookies=cookies
         # )
-        #     for key in self.activity_data
+        #     for key in redis.get('activity_data')
         # )
 
         # # Fais la requetes des données et les stocke sous
         # # answer = (reponse1,reponse2,...,response n)
         # answer = grequests.map(rs)
-        data = json.loads(self.activity_data)
+        data = json.loads(redis.get('activity_data'))
         # print(answer)
 
         # pour chaque chambre de la liste
@@ -137,11 +136,11 @@ class ChatBackend(object):
             # update data
         # print(data)
 
-        self.activity_data = json.dumps(data)
+        redis.set('activity_data', json.dumps(data))
         # app.logger.info(u'Inserting message: {}'.format(message))
         # redis.publish(REDIS_CHAN, message)
 
-        return self.activity_data
+        return redis.get('activity_data')
 
     def start(self):
         """Maintains Redis subscription in the background."""
