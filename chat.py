@@ -76,7 +76,7 @@ class ChatBackend(object):
         gevent.spawn(self.run_time, self.update, 15)
         for data in self.__iter_data():
             for client in self.clients:
-                gevent.spawn(self.send, client, data)
+                gevent.spawn(self.send, client, 'citron')
 
     def run_time(self, function, interval, *args, **kwargs):
         while True:
