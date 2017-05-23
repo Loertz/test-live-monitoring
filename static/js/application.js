@@ -8,6 +8,7 @@ if (window.location.protocol == "https:") {
 var initial=false;
 var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
+
 inbox.onmessage = function(message) {
   var data = JSON.parse(message.data);
   if (!initial) {
@@ -24,6 +25,7 @@ inbox.onmessage = function(message) {
         cha.innerHTML = "Chambre :  n°" + val.n;
 
         var dur = document.createElement('h4');
+
         dur.innerHTML = "Durée de l'activitée : " + val.tempdemarche
         dur.id = val.n;
 
