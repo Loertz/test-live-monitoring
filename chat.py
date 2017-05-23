@@ -63,11 +63,11 @@ class ChatBackend(object):
     def send(self, client, data):
         """Send given data to the registered client.
         Automatically discards invalid connections."""
-        try:
-            client.send(data)
-            print(client)
-        except Exception:
-            self.clients.remove(client)
+        client.send(data)
+        # try:
+        #     print(client)
+        # except Exception:
+        #     self.clients.remove(client)
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
