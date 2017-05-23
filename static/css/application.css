@@ -7,7 +7,7 @@ TOP HEADER
 .topnav {
     background-color: #333;
     overflow: hidden;
-    z-index: 2; /* Stay on top */
+    z-index: 1; /* Stay on top */
 }
 
 /* Style the links inside the navigation bar */
