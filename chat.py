@@ -80,11 +80,11 @@ class ChatBackend(object):
 
             duration = time.time() - self.time
             if duration > interval:
-                self.activity_data = function(*args, **kwargs)
+                function(*args, **kwargs)
                 self.time = time.time()
                 print('updated')
             redis.publish(REDIS_CHAN, self.activity_data)
-            gevent.sleep(interval / 10)
+            gevent.sleep(interval / 5)
 
     def update(self):
 
@@ -111,7 +111,7 @@ class ChatBackend(object):
         # # Fais la requetes des données et les stocke sous
         # # answer = (reponse1,reponse2,...,response n)
         # answer = grequests.map(rs)
-        data = self.activity_data
+        data = json.loads(self.activity_data)
         # print(answer)
 
         # pour chaque chambre de la liste
@@ -136,11 +136,11 @@ class ChatBackend(object):
             # update data
         # print(data)
 
-        message = json.dumps(data)
+        self.activity_data = json.dumps(data)
         # app.logger.info(u'Inserting message: {}'.format(message))
         # redis.publish(REDIS_CHAN, message)
 
-        return message
+        return self.activity_data
 
     def start(self):
         """Maintains Redis subscription in the background."""
