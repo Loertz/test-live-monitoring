@@ -63,8 +63,8 @@ class LiveMonitoringBackend(object):
     def send(self, client, data):
         """Send given data to the registered client.
         Automatically discards invalid connections."""
-        client.send(data)
         try:
+            client.send(data)
             print(client)
         except Exception:
             self.clients.remove(client)
@@ -85,7 +85,7 @@ class LiveMonitoringBackend(object):
                 redis.set('before', time.time())
                 print('updated')
                 redis.publish(REDIS_CHAN, redis.get('activity_data'))
-            gevent.sleep(interval )
+            gevent.sleep(interval)
 
     def update(self):
 
