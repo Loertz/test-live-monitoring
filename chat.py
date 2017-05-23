@@ -80,7 +80,7 @@ class ChatBackend(object):
 
             for data in self.__iter_data():
                 for client in self.clients:
-                    gevent.spawn(self.send, client, duration)
+                    gevent.spawn(self.send, client, data)
 
             if duration < interval:
                 gevent.sleep(interval - duration)
