@@ -83,7 +83,7 @@ class ChatBackend(object):
                 self.activity_data = function(*args, **kwargs)
                 self.time = time.time()
                 print('updated')
-            redis.publis(REDIS_CHAN, self.activity_data)
+            redis.publish(REDIS_CHAN, self.activity_data)
             gevent.sleep(interval / 10)
 
     def update(self):
