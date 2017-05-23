@@ -58,7 +58,7 @@ class ChatBackend(object):
         """Register a WebSocket connection for Redis updates."""
         self.clients.append(client)
         # app.logger.info(u'Inserting message: {}'.format(message))
-        # redis.publish(REDIS_CHAN, message)
+        gevent.spawn(self.send, client, self.activity_data)
 
     def send(self, client, data):
         """Send given data to the registered client.
@@ -83,7 +83,7 @@ class ChatBackend(object):
                 function(*args, **kwargs)
                 self.time = time.time()
                 print('updated')
-            redis.publish(REDIS_CHAN, self.activity_data)
+                redis.publish(REDIS_CHAN, self.activity_data)
             gevent.sleep(interval / 5)
 
     def update(self):
