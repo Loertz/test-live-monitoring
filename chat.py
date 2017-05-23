@@ -69,7 +69,7 @@ class ChatBackend(object):
         except Exception as e:
             self.clients.remove(client)
             print('erreur')
-            print(client)
+            print(e.data)
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
