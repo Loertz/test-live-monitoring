@@ -35,6 +35,16 @@ class ChatBackend(object):
         self.clients = list()
         self.pubsub = redis.pubsub()
         self.pubsub.subscribe(REDIS_CHAN)
+        self.activity_data = [
+        {
+            "name": "Johnny",
+            "n": i,
+            "lastEvent": "ABSENCE",
+            "tempsdemarche": 0,
+            "acti": ""
+        }
+        for i in range(1, 16)
+    ]
 
 
     def __iter_data(self):
@@ -76,7 +86,7 @@ class ChatBackend(object):
 
     def update(self):
 
-        activity_data = json.loads(self.pubsub.listen().get('data'))
+        # self.activity_data = json.loads(self.pubsub.listen().get('data'))
 
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
@@ -93,13 +103,13 @@ class ChatBackend(object):
         #     urlbase + str(key["n"]),
         #     cookies=cookies
         # )
-        #     for key in activity_data
+        #     for key in self.activity_data
         # )
 
         # # Fais la requetes des données et les stocke sous
         # # answer = (reponse1,reponse2,...,response n)
         # answer = grequests.map(rs)
-        data = activity_data
+        data = self.activity_data
         # print(answer)
 
         # pour chaque chambre de la liste
