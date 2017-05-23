@@ -6,7 +6,7 @@ if (window.location.protocol == "https:") {
 };
 
 var initial=false;
-var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
+var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive":33245);
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 
 inbox.onmessage = function(message) {
