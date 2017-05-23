@@ -44,7 +44,7 @@ function update_css(data)
       }
 
       else if (val.acti =="1") {
-          document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
+          document.getElementById(val.n).innerHTML = val.tmc
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
             if (val.lastEvent == "BEDROOM") {
               document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
@@ -62,7 +62,7 @@ function update_css(data)
         }
 
       else {
-          document.getElementById(val.n).innerHTML ="Durée de l'activitée : " + val.tmc
+          document.getElementById(val.n).innerHTML = val.tmc
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
             if (val.lastEvent == "BEDROOM") {
               document.getElementById("div"+val.n).style.backgroundColor = "#8C8910"
