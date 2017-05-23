@@ -66,7 +66,7 @@ class ChatBackend(object):
         try:
             client.send(data)
         except Exception:
-            client.send(Exception)
+            client.send('error')
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
