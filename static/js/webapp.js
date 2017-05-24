@@ -33,6 +33,7 @@ function initiate (data) {
     box.appendChild(resd,dur);
     monitoring.appendChild(box);
 
+
   });
 };
 
@@ -50,7 +51,7 @@ function update_css(data)
         $(val.n).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
             if (val.lastEvent == "BEDROOM") {
-              $("#div"+val.n).style.backgroundColor = #f2f2f2;
+              $("#div"+val.n).style.backgroundColor = "#f2f2f2";
             }
             else if (val.lastEvent == "BATHROOM") {
               $("#"+"div"+string(val.n)).style.backgroundColor = "#1D7FB2";
