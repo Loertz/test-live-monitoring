@@ -26,6 +26,17 @@ app.debug = 'DEBUG' in os.environ
 
 sockets = Sockets(app)
 redis = redis.from_url(REDIS_URL)
+redis.set('before', time.time())
+redis.set('activity_data', json.dumps([
+    {
+        "name": "Johnny",
+        "n": i,
+        "lastEvent": "BEDROOM",
+        "tmc": 0,
+        "acti": ""
+    }
+    for i in range(1, 16)
+]))
 
 
 class LiveMonitoringBackend(object):
@@ -35,17 +46,6 @@ class LiveMonitoringBackend(object):
         self.clients = list()
         self.pubsub = redis.pubsub()
         self.pubsub.subscribe(REDIS_CHAN)
-        redis.set('before', time.time())
-        redis.set('activity_data', json.dumps([
-            {
-                "name": "Johnny",
-                "n": i,
-                "lastEvent": "BEDROOM",
-                "tmc": 0,
-                "acti": ""
-            }
-            for i in range(1, 16)
-        ]))
 
     def __iter_data(self):
         for message in self.pubsub.listen():
@@ -65,7 +65,7 @@ class LiveMonitoringBackend(object):
         """Send given data to the registered client.
         Automatically discards invalid connections."""
         try:
-            client.send(data)
+       client.send(data)
             print(client)
         except Exception:
             self.clients.remove(client)
@@ -115,13 +115,12 @@ class LiveMonitoringBackend(object):
         data = json.loads(redis.get('activity_data'))
         # print(answer)
 
-        # pour chaque chambre de la liste
+        # # pour chaque chambre de la liste
         for room in data:
 
             # print(answer[int(room["n"])].text)
             # ro_n = json.loads(answer[int(room["n"]) - 1].text)
 
-            # # room['lastEvent'] = ro_n['room']['lastEvent']
             # room['lastEvent'] = ro_n['room']['lastEvent']
 
             if room['lastEvent'] in eventactif:
@@ -141,7 +140,7 @@ class LiveMonitoringBackend(object):
         # app.logger.info(u'Inserting message: {}'.format(message))
         # redis.publish(REDIS_CHAN, message)
 
-        return redis.get('activity_data')
+        return True
 
     def start(self):
         """Maintains Redis subscription in the background."""

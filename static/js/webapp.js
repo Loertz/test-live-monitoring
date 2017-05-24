@@ -27,7 +27,6 @@ function initiate (data) {
 
     node.appendChild(resd);
     node.appendChild(dur);
-    node.style.display="inline";
     monitoring.appendChild(node);
 
   });
