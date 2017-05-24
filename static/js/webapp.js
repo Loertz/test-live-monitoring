@@ -8,7 +8,7 @@ $("#journal").click(function openNav() {
 $("#journal").click(function closeNav() {
   if (on) {
       $("#mySidenav").style.width = "20%";
-      var on = false:
+      var on = false;
   /*    $("#main").style.marginRight= "20%"; */
   };
 });
