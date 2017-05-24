@@ -74,7 +74,6 @@ class LiveMonitoringBackend(object):
 
     def run(self):
         """Listens for new messages in Redis, and sends them to clients."""
-        gevent.spawn(self.run_time, self.update, 60)
         for data in self.__iter_data():
             for client in self.clients:
                 gevent.spawn(self.send, client, data)
@@ -147,7 +146,7 @@ class LiveMonitoringBackend(object):
     def start(self):
         """Maintains Redis subscription in the background."""
         gevent.spawn(self.run)
-
+        gevent.spawn(self.run_time, self.update, 60)
 
 livemonitoring = LiveMonitoringBackend()
 livemonitoring.start()
