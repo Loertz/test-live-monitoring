@@ -46,7 +46,7 @@ function update_css(data)
           document.getElementById(val.n).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :rgb(63, 63, 78);*/
             if (val.lastEvent == "BEDROOM") {
-              document.getElementById("div"+val.n).style.backgroundColor = "#8C8910";
+              document.getElementById("div"+val.n).style.backgroundColor = rgb(63, 63, 78);
                }
             else if (val.lastEvent == "BATHROOM") {
               document.getElementById("div"+val.n).style.backgroundColor ="#1D7FB2";

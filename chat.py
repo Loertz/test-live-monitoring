@@ -16,6 +16,7 @@ from flask_sockets import Sockets
 import json
 import grequests
 import time
+import random
 
 
 REDIS_URL = os.environ['REDIS_URL']
@@ -125,7 +126,7 @@ class LiveMonitoringBackend(object):
             # room['lastEvent'] = ro_n['room']['lastEvent']
 
             if room['lastEvent'] in eventactif:
-                room['acti'] += '1'
+                room['acti'] += random.choice(('1', '0'))
             else:
                 room['acti'] += '0'
 
@@ -147,6 +148,7 @@ class LiveMonitoringBackend(object):
         """Maintains Redis subscription in the background."""
         gevent.spawn(self.run)
         gevent.spawn(self.run_time, self.update, 60)
+
 
 livemonitoring = LiveMonitoringBackend()
 livemonitoring.start()
