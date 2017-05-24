@@ -10,7 +10,6 @@ var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 
 inbox.onmessage = function(message) {
-  console.log(JSON.parse(message.data));
   var data = JSON.parse(message.data);
   if (!initial) {
 initiate(data);
@@ -18,9 +17,9 @@ initiate(data);
 
    console.log(initial);
     initial=true;
-    console.log(initial);
 
-    console.log('update');
+
+    console.log('init-update');
     console.log(message.data);
 
 update_css(data);
