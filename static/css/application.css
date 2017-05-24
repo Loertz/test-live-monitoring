@@ -5,7 +5,7 @@ TOP HEADER
 
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #111;
+    background-color: #013162;
     overflow: hidden;
     z-index: 1; /* Stay on top */
 }
@@ -45,7 +45,7 @@ SIDE NAVIGATION MENU
 
     top: 40;
     right: 0;
-    background-color: #111; /* Black*/
+    background-color: #013162; /* Blue*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -121,7 +121,7 @@ STYLE : BOX OF THE MONITORING APPLICATION
     letter-spacing: 0.2px;
 
 body {
-        background: #ffffff;
+        background: #013162;
     font-family: 'Lora', serif;
     font-style: normal;
         font-weight: 300;
