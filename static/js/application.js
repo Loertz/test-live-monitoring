@@ -23,10 +23,8 @@ $(inbox.onmessage = function(message) {
       console.log(message.data);
 
   update_css(data);
-
-  };
-
-console.log('update');
+  console.log('update');
+  }
 );
 
 

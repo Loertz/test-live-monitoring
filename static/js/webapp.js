@@ -1,11 +1,11 @@
-$("#journal").click(function openNav() {
+$.("#journal").click(function openNav() {
     $.("#mySidenav").style.width = "100%";
     var on = true;
 /*    document.getElementById("main").style.marginLeft = "100%";*/
 });
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-$("#journal").click(function closeNav() {
+$.("#journal").click(function closeNav() {
   if (on) {
       $.("#mySidenav").style.width = "20%";
       var on = false:
