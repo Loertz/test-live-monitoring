@@ -82,13 +82,14 @@ class LiveMonitoringBackend(object):
     def run_time(self, function, interval, *args, **kwargs):
         while True:
             duration = time.time() - float(redis.get('before'))
-            print(duration)
+
             if duration > interval:
+                print(duration)
                 function(*args, **kwargs)
                 redis.set('before', time.time())
                 print('updated')
                 redis.publish(REDIS_CHAN, redis.get('activity_data'))
-            gevent.sleep(interval)
+            gevent.sleep(interval / 10)
 
     def update(self):
 
@@ -140,7 +141,11 @@ class LiveMonitoringBackend(object):
             else:
                 room['tmc'] = int(len(room['acti']) / 5) * 5
             # update data
+
         # print(data)
+
+        # Trie les chambres par actvités
+        data = sorted(data, key=lambda room: room['tmc'])
 
         redis.set('activity_data', json.dumps(data))
         # app.logger.info(u'Inserting message: {}'.format(message))

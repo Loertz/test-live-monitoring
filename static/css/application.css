@@ -5,7 +5,7 @@ TOP HEADER
 
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #013162;
+    background-color: #0066ff;
     overflow: hidden;
     z-index: 1; /* Stay on top */
 }
@@ -13,7 +13,7 @@ TOP HEADER
 /* Style the links inside the navigation bar */
 .topnav a {
     float: center;
-    display: block;
+    display: inline;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -45,7 +45,7 @@ SIDE NAVIGATION MENU
 
     top: 40;
     right: 0;
-    background-color: #013162; /* Blue*/
+    background-color: #0066ff; /* Blue*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */

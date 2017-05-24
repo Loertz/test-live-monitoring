@@ -9,24 +9,27 @@ var initial=false;
 var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 
-inbox.onmessage = function(message) {
-  var data = JSON.parse(message.data);
-  if (!initial) {
-initiate(data);
-    };
+$(inbox.onmessage = function(message) {
+    var data = JSON.parse(message.data);
+    if (!initial) {
+      initiate(data);
+      };
 
-   console.log(initial);
-    initial=true;
+     console.log(initial);
+      initial=true;
 
 
-    console.log('init-update');
-    console.log(message.data);
+      console.log('init-update');
+      console.log(message.data);
 
-update_css(data);
+  update_css(data);
 
-};
+  };
 
 console.log('update');
+);
+
+
   /*
   $("#chat-text").append("<div class='panel panel-default'><div class='panel-heading'>" + $('<span/>').text(data.handle).html() + "</div><div class='panel-body'>" + $('<span/>').text(data.text).html() + "</div></div>");
   $("#chat-text").stop().animate({
