@@ -18,7 +18,7 @@ function initiate (data) {
     node.id = "div"+val.n;
 
     var resd = document.createElement('h5');
-    resd.innerText = val.name +\n + "Chambre :  n°" + val.n;
+    resd.innerText = val.name + "Chambre :  n°" + val.n;
 
     var dur = document.createElement('h6');
 
