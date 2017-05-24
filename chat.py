@@ -166,7 +166,7 @@ livemonitoring.start()
 @app.route('/')
 def hello():
     return render_template('index.html')
-
+    redis.publish(REDIS_CHAN, redis.get('activity_data'))
 # @sockets.route('/submit')
 # def inbox(ws):
 #     """Receives incoming chat messages, inserts them into Redis."""

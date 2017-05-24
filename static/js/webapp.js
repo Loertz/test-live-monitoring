@@ -22,7 +22,7 @@ function initiate (data) {
     box.id = "div"+val.n;
 
     var resd = document.createElement('h5');
-    resd.innerText = val.name + "Chambre :  n°" + val.n;
+    resd.innerText = val.name + "Chambre :" + val.n;
 
     var dur = document.createElement('h6');
 
