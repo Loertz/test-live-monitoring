@@ -16,7 +16,7 @@ $(inbox.onmessage = function(message) {
       };
 
      console.log(initial);
-      initial=true;
+      initiale
 
 
       console.log('init-update');
