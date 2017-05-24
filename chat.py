@@ -65,8 +65,9 @@ class LiveMonitoringBackend(object):
         Automatically discards invalid connections."""
         try:
             client.send(data)
-            print(client)
+            print('try : ' + client)
         except Exception:
+            print('echec : ' + client)
             self.clients.remove(client)
 
     def run(self):
