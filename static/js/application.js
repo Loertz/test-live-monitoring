@@ -12,37 +12,38 @@ var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 var initial = false;
 console.log(initial);
 
-inbox.onmessage = function(message) {
+$(document).ready(function() {
+  inbox.onmessage = function(message) {
 
-  console.log(message);
-  var data = JSON.parse(message.data);
+    console.log(message);
+    var data = JSON.parse(message.data);
 
-  if (initial == false) {
-    initiate(data);
-    var initial = true;
-    console.log('init-update');
+    if (!initial) {
+      initiate(data);
+      initial = true;
+      console.log('init-update');
 
+    };
+
+    if (initial) {
+      update_css(data);
+      console.log('update');
+    };
+    console.log(initial);
   };
 
-  if (initial) {
-    update_css(data);
-    console.log('update');
-  };
-  console.log(initial);
-};
 
+  inbox.onclose = function(error) {
+    console.log(error.code);
+    this.inbox = new WebSocket(inbox.url);
+  };
+});
 
 /*
 $("#chat-text").append("<div class='panel panel-default'><div class='panel-heading'>" + $('<span/>').text(data.handle).html() + "</div><div class='panel-body'>" + $('<span/>').text(data.text).html() + "</div></div>");
 $("#chat-text").stop().animate({
   scrollTop: $('#chat-text')[0].scrollHeight
 }, 800);*/
-inbox.onclose = function(error) {
-  console.log(error.code);
-  this.inbox = new WebSocket(inbox.url);
-
-};
-
 /*outbox.onclose = function(){
     console.log('outbox closed');
     this.outbox = new WebSocket(outbox.url);
