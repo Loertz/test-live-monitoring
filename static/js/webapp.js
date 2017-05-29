@@ -1,37 +1,42 @@
 $("#journal").click(function openNav() {
-    $("#mySidenav").style.width = "100%";
-    var on = true;
-/*    document.getElementById("main").style.marginLeft = "100%";*/
+  $("#mySidenav").style.width = "100%";
+  var on = true;
+  /*    document.getElementById("main").style.marginLeft = "100%";*/
 });
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 $("#journal").click(function closeNav() {
   if (on) {
-      $("#mySidenav").style.width = "20%";
-      var on = false;
-  /*    $("#main").style.marginRight= "20%"; */
+    $("#mySidenav").style.width = "20%";
+    var on = false;
+    /*    $("#main").style.marginRight= "20%"; */
   };
 });
 
 
 
-function initiate (data) {
+function initiate(data) {
   data.forEach(function create(val) {
 
     var box = document.createElement("div");
-    box.setAttribute("class","floating-box");
-    box.id = "div"+val.n;
+    box.setAttribute("class", "floating-box");
+    box.id = "room-" + val.n.toString();
 
-    var resd = document.createElement('h5');
-    resd.innerText = val.name + "Chambre :" + val.n;
+    var info = document.createElement("div");
+    info.setAttribute("class", "nom");
+    info.appendChild(val.name, "Chambre :" + val.n.toString());
+
+    var icon = new Image(100, 200);
+    icon.src = 'static/image/bedroom.png';
+
 
     var dur = document.createElement('h6');
-
     dur.innerText = val.tmc;
-    dur.id = val.n;
+    dur.id = "tmc-" + val.n;
 
 
-    box.appendChild(resd,dur);
+    box.appendChild(info,icon, dur);
+    body.insertBefore(box, monitoring.firstChild)
     monitoring.appendChild(box);
 
     $(this).css('background-color', 'red');
@@ -40,31 +45,32 @@ function initiate (data) {
 };
 
 
-function update_css(data)
-{data.forEach(function creat( val) {
-      if (val.acti == "") {
+function update_css(data) {
+  data.forEach(function creat(val) {
+    if (val.acti == "") {
 
-          $(val.n).innerText = val.tmc;
-          $("#div"+val.n.toString() : display show).toggle(display);
-          /*$("#div"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
+      $("tmc-" + val.n).innerText = "0";
+      $("room-" + val.n.toString() + ": display show").toggle(display);
+      /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
+    }
+    else {
+      $("tmc-" + val.n).innerText = val.tmc;
+      /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
+      if (val.lastEvent == "BEDROOM") {
+/*        $("room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
+        $("room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
       }
-
+      else if (val.lastEvent == "BATHROOM") {
+/*        $("room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
+        $("room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
+      }
+      else if (val.lastEvent == "FALL") {
+        $("room-" + val.n.toString() ).style.backgroundColor = "#CA1725";
+      }
       else {
-        $(val.n).innerText = val.tmc;
-            /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
-            if (val.lastEvent == "BEDROOM") {
-              $("#div"+val.n.toString()).style.backgroundColor = "#f2f2f2";
-            }
-            else if (val.lastEvent == "BATHROOM") {
-              $("#"+"div"+string(val.n)).style.backgroundColor = "#1D7FB2";
-            }
-            else if (val.lastEvent == "FALL") {
-              $("#div"+val.n.toString()).style.backgroundColor = "#CA1725";
-            }
-            else {
-              /*$("#div"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
-            };
-        $("#div"+val.n.toString()).style.display = "show";
+        /*$("room-"+val.n.toString() ).style.backgroundColor = "#f2f2f2"*/
       };
+      $("room-" + val.n.toString() ).style.display = "show";
+    };
   });
 };

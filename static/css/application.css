@@ -119,6 +119,22 @@ STYLE : BOX OF THE MONITORING APPLICATION
     font-weight: 300;
     line-height: 26px;
     letter-spacing: 0.2px;
+}
+
+
+.bedroom{
+    background-image: url("static/image/bedroom.png");
+    background-repeat: no-repeat;
+    width: auto; /*or your image's width*/
+    height: auto; /*or your image's height*/
+    margin: 0;
+    padding: 0;
+}
+.
+.shower{
+    background-image: url("static/image/shower.svg");
+}
+
 
 body {
         background: #333
