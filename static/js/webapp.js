@@ -26,7 +26,7 @@ function initiate(data) {
     info.setAttribute("class", "nom");
     info.appendChild(val.name, "Chambre :" + val.n.toString());
 
-    var icon = new Image(100, 200);
+    var icon = new Image(20, 20);
     icon.src = 'static/image/bedroom.png';
 
 
@@ -37,9 +37,7 @@ function initiate(data) {
 
     box.appendChild(info,icon, dur);
     body.insertBefore(box, monitoring.firstChild)
-    monitoring.appendChild(box);
 
-    $(this).css('background-color', 'red');
 
   });
 };
@@ -49,28 +47,28 @@ function update_css(data) {
   data.forEach(function creat(val) {
     if (val.acti == "") {
 
-      $("tmc-" + val.n).innerText = "0";
-      $("room-" + val.n.toString() + ": display show").toggle(display);
+      $("#tmc-" + val.n).innerText = "0";
+      $("#room-" + val.n.toString() ).toggle(display);
       /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
     }
     else {
-      $("tmc-" + val.n).innerText = val.tmc;
+      $("#tmc-" + val.n).innerText = val.tmc;
       /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
       if (val.lastEvent == "BEDROOM") {
-/*        $("room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
-        $("room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
+/*        $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
+        $("#room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
       }
       else if (val.lastEvent == "BATHROOM") {
-/*        $("room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
-        $("room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
+/*        $("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
+        $("#room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
       }
       else if (val.lastEvent == "FALL") {
-        $("room-" + val.n.toString() ).style.backgroundColor = "#CA1725";
+        $("#room-" + val.n.toString() ).style.backgroundColor = "#CA1725";
       }
       else {
         /*$("room-"+val.n.toString() ).style.backgroundColor = "#f2f2f2"*/
       };
-      $("room-" + val.n.toString() ).style.display = "show";
+      $("#room-" + val.n.toString() ).style.display = "show";
     };
   });
 };
