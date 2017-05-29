@@ -17,7 +17,7 @@ inbox.onmessage = function(message) {
   console.log(message);
   var data = JSON.parse(message.data);
 
-  if (!initial) {
+  if (initial == false) {
     initiate(data);
     var initial = true;
     console.log('init-update');
