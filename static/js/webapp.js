@@ -24,14 +24,14 @@ function initiate(data) {
 
     var info = document.createElement("div");
     info.setAttribute("class", "nom");
-    info.innerText= val.name + "\n" + "Chambre :" + val.n.toString();
+    info.innerText= val.name + "\n" + "Chambre : " + val.n.toString();
 
     var icon = new Image(20, 20);
-    icon.src = 'static/image/bedroom.png';
+    icon.setAttribute("src", 'static/image/bedroom.png');
 
 
     var dur = document.createElement('p');
-    dur.innerText = val.tmc;
+    dur.innerText = val.tmc.toString();
     dur.id = "tmc-" + val.n;
 
 
@@ -51,7 +51,7 @@ function update_css(data) {
       /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
     }
     else {
-      $("#tmc-" + val.n).innerText = val.tmc;
+      $("#tmc-" + val.n).innerText = val.tmc.toString();
       /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
       if (val.lastEvent == "BEDROOM") {
 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
