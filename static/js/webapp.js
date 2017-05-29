@@ -27,10 +27,11 @@ function initiate(data) {
     info.innerText= val.name + "\n" + "Chambre : " + val.n.toString();
 
     var icon = new Image(20, 20);
-    icon.setAttribute("src", 'static/image/bedroom.png');
+    icon.setAttribute("src", "static/image/bedroom.png");
+    icon.id = "icon-"+val.n;
 
-
-    var dur = document.createElement('p');
+    var dur = document.createElement("div");
+    dur.setAttribute("class", "contenu");
     dur.innerText = val.tmc.toString();
     dur.id = "tmc-" + val.n;
 
@@ -55,11 +56,11 @@ function update_css(data) {
       /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
       if (val.lastEvent == "BEDROOM") {
 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
-        $("#room-" + val.n.toString() ).attr("src",'static/image/bedroom.png');
+        $("#icon" + val.n).attr("src","static/image/bedroom.png");
       }
       else if (val.lastEvent == "BATHROOM") {
 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
-        $("#room-" + val.n.toString() ).attr("src", 'static/image/shower.svg');
+        $("#icon" + val.n).attr("src", "static/image/shower.svg");
       }
       else if (val.lastEvent == "FALL") {
 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#CA1725";*/
