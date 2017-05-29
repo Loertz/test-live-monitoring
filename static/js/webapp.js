@@ -24,7 +24,7 @@ function initiate(data) {
 
     var info = document.createElement("div");
     info.setAttribute("class", "nom");
-    info.text(val.name + "\n" + "Chambre :" + val.n.toString());
+    info.innerText= val.name + "\n" + "Chambre :" + val.n.toString();
 
     var icon = new Image(20, 20);
     icon.src = 'static/image/bedroom.png';
