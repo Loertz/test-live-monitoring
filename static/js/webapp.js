@@ -16,7 +16,7 @@ $("#journal").click(function closeNav() {
 
 
 function initiate(data) {
-  data.forEach(function create(val) {
+  data.forEach(function create(val) {e
 
     var box = document.createElement("div");
     box.setAttribute("class", "floating-box");
@@ -36,8 +36,7 @@ function initiate(data) {
 
 
     box.appendChild(info,icon, dur);
-    body.insertBefore(box, monitoring.firstChild)
-
+    monitoring.appendChild(box);
 
   });
 };
@@ -56,11 +55,11 @@ function update_css(data) {
       /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
       if (val.lastEvent == "BEDROOM") {
 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
-        $("#room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
+        $("#room-" + val.n.toString() ).attr("src",'static/image/bedroom.png');
       }
       else if (val.lastEvent == "BATHROOM") {
 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
-        $("#room-" + val.n.toString() ).style.src =  'static/image/bedroom.png';
+        $("#room-" + val.n.toString() ).attr("src", 'static/image/shower.svg');
       }
       else if (val.lastEvent == "FALL") {
         $("#room-" + val.n.toString() ).style.backgroundColor = "#CA1725";
