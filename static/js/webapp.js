@@ -36,7 +36,9 @@ function initiate(data) {
     dur.id = "tmc-" + val.n;
 
 
-    box.appendChild(info,icon, dur);
+    box.appendChild(info);
+    box.appendChild(icon);
+    box.appendChild(idur);
     monitoring.appendChild(box);
 
   });
