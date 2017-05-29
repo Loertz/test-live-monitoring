@@ -100,7 +100,7 @@ STYLE : BOX OF THE MONITORING APPLICATION
     height: 50px;
     margin: 5px;
     padding : 5px;
-    background-color : "#999";
+    background-color : #f2f2f2;
     display : show;
     opacity:1
 }
@@ -135,7 +135,9 @@ STYLE : BOX OF THE MONITORING APPLICATION
     background-image: url("static/image/shower.svg");
 }
 
-
+body{
+    background-color : #006633;
+}
 
 /*---------------------------------------
     Button Switch

@@ -5,18 +5,22 @@ if (window.location.protocol == "https:") {
   var ws_scheme = "ws://"
 };
 
-var initial = false;
-console.log(initial);
 
 var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 
+var initial = false;
+console.log(initial);
+
 inbox.onmessage = function(message) {
-  console.log(message.data);
+
+  console.log(message);
   var data = JSON.parse(message.data);
 
-  initiate(data);
-  var initial = true;
+  if (!initiate) {
+    initiate(data);
+    var initial = true;
+  };
 
   console.log('init-update');
   if (initial) {
