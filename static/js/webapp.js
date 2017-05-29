@@ -33,7 +33,7 @@ function initiate(data) {
     var dur = document.createElement("div");
     dur.setAttribute("class", "contenu");
     dur.innerText = val.tmc.toString();
-    dur.id = "tmc-" + val.n;
+    dur.id = "tmc-" + val.n.toString();
 
 
     box.appendChild(info);
@@ -50,20 +50,20 @@ function update_css(data) {
   data.forEach(function creat(val) {
     if (val.acti == "") {
 
-      $("#tmc-" + val.n).innerText = "0";
+      $("#tmc-" + val.n.toString()).innerText = "0";
 /*      $("#room-" + val.n.toString() ).toggle(display);*/
       /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
     }
     else {
-      $("#tmc-" + val.n).innerText = val.tmc.toString();
+      $("#tmc-" + val.n.toString()).innerText = val.tmc.toString();
       /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
       if (val.lastEvent == "BEDROOM") {
-/*        $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
-        $("#icon" + val.n).attr("src","static/image/bedroom.png");
+      /* $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
+        $("#icon" + val.n.toString()).attr("src","static/image/bedroom.png");
       }
       else if (val.lastEvent == "BATHROOM") {
-/*        $("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
-        $("#icon" + val.n).attr("src", "static/image/shower.svg");
+      /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
+        $("#icon" + val.n.toString()).attr("src", "static/image/shower.svg");
       }
       else if (val.lastEvent == "FALL") {
 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#CA1725";*/

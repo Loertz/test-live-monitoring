@@ -20,13 +20,15 @@ inbox.onmessage = function(message) {
   if (!initial) {
     initiate(data);
     var initial = true;
+    console.log('init-update');
+
   };
 
-  console.log('init-update');
   if (initial) {
     update_css(data);
+    console.log('update');
   };
-  console.log('update');
+  console.log(initial);
 };
 
 
