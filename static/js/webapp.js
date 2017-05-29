@@ -47,7 +47,7 @@ function update_css(data) {
     if (val.acti == "") {
 
       $("#tmc-" + val.n).innerText = "0";
-      $("#room-" + val.n.toString() ).toggle(display);
+/*      $("#room-" + val.n.toString() ).toggle(display);*/
       /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
     }
     else {
