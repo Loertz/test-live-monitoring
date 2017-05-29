@@ -11,7 +11,7 @@ console.log(initial);
 var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 /*var outbox = new ReconnectingWebSocket(ws_scheme + location.host + "/submit");*/
 
-$(inbox.onmessage = function(message) {
+inbox.onmessage = function(message) {
   console.log(message.data);
   var data = JSON.parse(message.data);
 
@@ -27,7 +27,7 @@ $(inbox.onmessage = function(message) {
     update_css(data);
   };
   console.log('update');
-});
+};
 
 
 /*
