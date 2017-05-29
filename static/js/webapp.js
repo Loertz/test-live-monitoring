@@ -62,7 +62,7 @@ function update_css(data) {
         $("#room-" + val.n.toString() ).attr("src", 'static/image/shower.svg');
       }
       else if (val.lastEvent == "FALL") {
-        $("#room-" + val.n.toString() ).style.backgroundColor = "#CA1725";
+/*        $("#room-" + val.n.toString() ).style.backgroundColor = "#CA1725";*/
       }
       else {
         /*$("room-"+val.n.toString() ).style.backgroundColor = "#f2f2f2"*/
