@@ -39,6 +39,7 @@ function initiate(data) {
     box.appendChild(info);
     box.appendChild(icon);
     box.appendChild(dur);
+    box.style.display = "flex";
     monitoring.appendChild(box);
 
   });
