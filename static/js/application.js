@@ -12,7 +12,7 @@ var inbox = new ReconnectingWebSocket(ws_scheme + location.host + "/receive");
 $(inbox.onmessage = function(message) {
   var data = JSON.parse(message.data);
 
-  if ($("#monitoring>div").lenght() < 2) {
+  if ($("#monitoring>div").lenght < 2) {
     initiate(data);
     var initial = true;
   };
