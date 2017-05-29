@@ -67,7 +67,6 @@ function update_css(data) {
       else {
         /*$("room-"+val.n.toString() ).style.backgroundColor = "#f2f2f2"*/
       };
-      $("#room-" + val.n.toString() ).style.display = "show";
     };
   });
 };
