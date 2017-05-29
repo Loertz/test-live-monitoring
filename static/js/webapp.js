@@ -1,11 +1,11 @@
-$("#journal").click(function openNav() {
+$("#log-screen").click(function openNav() {
   $("#mySidenav").style.width = "100%";
   var on = true;
   /*    document.getElementById("main").style.marginLeft = "100%";*/
 });
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
-$("#journal").click(function closeNav() {
+$("#acti-screen").click(function closeNav() {
   if (on) {
     $("#mySidenav").style.width = "20%";
     var on = false;
@@ -16,7 +16,7 @@ $("#journal").click(function closeNav() {
 
 
 function initiate(data) {
-  data.forEach(function create(val) {e
+  data.forEach(function create(val) {
 
     var box = document.createElement("div");
     box.setAttribute("class", "floating-box");
@@ -30,7 +30,7 @@ function initiate(data) {
     icon.src = 'static/image/bedroom.png';
 
 
-    var dur = document.createElement('h6');
+    var dur = document.createElement('p');
     dur.innerText = val.tmc;
     dur.id = "tmc-" + val.n;
 
