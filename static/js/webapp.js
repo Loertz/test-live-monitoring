@@ -38,7 +38,7 @@ function initiate(data) {
 
     box.appendChild(info);
     box.appendChild(icon);
-    box.appendChild(idur);
+    box.appendChild(dur);
     monitoring.appendChild(box);
 
   });
