@@ -15,12 +15,8 @@ inbox.onmessage = function(message) {
   console.log(message.data);
   var data = JSON.parse(message.data);
 
-  if ($("#monitoring>div").lenght < 2) {
-    initiate(data);
-    var initial = true;
-  };
-
-
+  initiate(data);
+  var initial = true;
 
   console.log('init-update');
   if (initial) {
