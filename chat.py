@@ -94,7 +94,7 @@ class LiveMonitoringBackend(object):
     def update(self):
 
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
-        urlbase = 'http://front.recipe.fim-team.net/api/monitoring/room/FMDEV.'
+        urlbase = 'http://front.recipe.fim-team.net/api/monitoring/room/FMDEV.500.'
 
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
         evenement = ('BEDROOM', 'BATHROOM', 'FALL', 'ABSENCE', 'PRESENCE')
