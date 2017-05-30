@@ -22,18 +22,6 @@ function evenement (a){
     $("#eventbar").prepend(event) ;
 };
 
-if ( $(".floating-box : visible") == None) {
-    if (!initial) {
-        $("#chargement").toggle(true);
-        $("#nothing").toggle(false);
-    } else {
-        $("#chargement").toggle(false);
-        $("#nothing").toggle(true);
-    }
-} else {
-    $("#chargement").toggle(false);
-    $("#nothing").toggle(false);
-};
 
 function initiate(data) {
     data.forEach(function create(val) {
