@@ -30,7 +30,7 @@ redis = redis.from_url(REDIS_URL)
 redis.set('before', time.time())
 redis.set('activity_data', json.dumps([
     {
-        "name": "Johnny",
+        "name": "Johnny" + str(i),
         "n": i,
         "lastEvent": "BEDROOM",
         "tmc": 0,

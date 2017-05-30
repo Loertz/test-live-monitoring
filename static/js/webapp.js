@@ -17,26 +17,23 @@ function changeText(id,t) {
 };
 
 function evenement (a){
-    var event = document.createElement("h1");
+    var event = document.createElement("p");
     event.innerText = a ;
-    $("#mySidenav").prepend(event) ;
+    $("#eventbar").prepend(event) ;
 };
 
-var chargement = document.createElement("div");
-chargement.setAttribute("class", "h1");
-chargement.innerText = "Chargement en cours...";
-chargement.id = "chargement";
-
-var nothing = document.createElement("div");
-nothing.setAttribute("class", "h1");
-nothing.innerText = "Les residents sont calmes";
-nothing.id="nothing";
-
-/*if ($('.floating-box : visible') == None) {
+if ($('.floating-box : visible') == None) {
     if (!initial) {
-        monitoring.append(nothing)
+        $("#chargement").toggle(true);
+        $("#nothing").toggle(false);
+    } else {
+        $("#chargement").toggle(false);
+        $("#nothing").toggle(true);
     }
-}*/
+} else {
+    $("#chargement").toggle(false);
+    $("#nothing").toggle(false);
+}
 
 function initiate(data) {
     data.forEach(function create(val) {
