@@ -67,7 +67,7 @@ function update_css(data) {
         } else {
 
             $("#room-" + val.n.toString()).toggle(true);
-            changeText("tmc-"+val.n.toString(),val.tmc);
+            changeText("tmc-"+val.n.toString(),val.tmc + "mn");
             // $("#tmc-" + val.n.toString()).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
             if (val.tmc == 40 ){
