@@ -121,12 +121,12 @@ class LiveMonitoringBackend(object):
 
         data = json.loads(redis.get('activity_data'))
         # print(answer)
-
+        i = 0
         # # pour chaque chambre de la liste
         for room in data:
 
-            ro_n = json.loads(answer[int(room["n"]) - 1].text)
-
+            ro_n = json.loads(answer[i].text)
+            i += 1
             # Update last event for each room
             room['lastEvent'] = ro_n['room']['lastEvent']
             print(room['lastEvent'])
