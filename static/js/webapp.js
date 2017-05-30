@@ -91,16 +91,16 @@ function update_css(data) {
 
             if (val.lastEvent == "BEDROOM") {
                     /* $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
-                changeImage("icon-" + val.n.toString(), "static/image/bedroom.png")
+                changeImage("icon-" + val.n.toString(), "static/image/chambreori.png")
 
             } else if (val.lastEvent == "BATHROOM") {
 
                 /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
-                changeImage("icon-" + val.n.toString(), "static/image/shower.png")
+                changeImage("icon-" + val.n.toString(), "static/image/showerori.svg")
 
             } else if (val.lastEvent == "FALL") {
 
-                evernement(val.name +"a chuté")
+                evenement(val.name +"a chuté")
 
             } else {
 
