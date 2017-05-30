@@ -14,8 +14,14 @@ $("#acti-screen").click(function closeNav() {
 });
 
 function changeImage(id, a) {
-    $(id).src = a;
+    document.getElementById(id).src = a;
 };
+
+function changeText(id,t) {
+    document.getElementById(id).innerText = t;
+}
+
+
 
 function initiate(data) {
     data.forEach(function create(val) {
@@ -51,22 +57,24 @@ function initiate(data) {
 function update_css(data) {
     data.forEach(function creat(val) {
         if (val.acti == "") {
-
-            $("#tmc-" + val.n.toString()).innerText = "0";
+            changeText("tmc-"+val.n.toString(),"0")
+/*            $("#tmc-" + val.n.toString()).innerText = "0";*/
             $("#room-" + val.n.toString()).toggle(false);
             /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
         } else {
             $("#room-" + val.n.toString()).toggle(true);
-            $("#tmc-" + val.n.toString()).innerText = val.tmc.toString();
+            changeText("tmc-"+val.n.toString(),val.tmc)
+            // $("#tmc-" + val.n.toString()).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
+
             if (val.lastEvent == "BEDROOM") {
-                console.log(val.tmc)
                     /* $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
-                changeImage("#icon-" + val.n.toString(), "static/image/bedroom.png")
+                changeImage("icon-" + val.n.toString(), "static/image/bedroom.png")
+                console.log(changeImage("icon-" + val.n.toString(), "static/image/bedroom.png"))
 
             } else if (val.lastEvent == "BATHROOM") {
                 /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
-                changeImage("#icon-" + val.n.toString(), "static/image/shower.svg")
+                changeImage("icon-" + val.n.toString(), "static/image/shower.svg")
             } else if (val.lastEvent == "FALL") {
                 /*        $("#room-" + val.n.toString() ).style.backgroundColor = "#CA1725";*/
             } else {
