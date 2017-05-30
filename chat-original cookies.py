@@ -36,7 +36,7 @@ redis.set('activity_data', json.dumps([
         "tmc": 0,
         "acti": ""
     }
-    for i in range(111, 116)
+    for i in range(1, 16)
 ]))
 
 
@@ -94,42 +94,39 @@ class LiveMonitoringBackend(object):
     def update(self):
 
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
-        urlbase = 'http://front.recipe.fim-team.net/api/monitoring/room/FMDEV.'
-
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
         evenement = ('BEDROOM', 'BATHROOM', 'FALL', 'ABSENCE', 'PRESENCE')
+        # cookies = {
+        #     'AWSELB':
+# '8BCBC7510619CE27DBBB694C8CC7E2F7DBEB7FF9997C562F58EF73D4C9B622B6CAF89A6E1F6146C1DFBCA6F975C6A21363A378B900A183886E855F85B3F76B607892CC1D99100F3545F02F3166B37746BF29432B23',
+        #     'JSESSIONID': '736FEE21BD03C31BCDDDAE9D9858D265',
+        #     '_ga': "GA1.3.755786443.1493122168",
+        #     '_gid': "GA1.3.903882648.1494921861",
+        # }
 
-        cookies = {
-        'JSESSIONID': '484886F867C4463491FDD873208123DC',
-        'AWSELB': '9913C50D10591FEE0CB0FFE69B89039701A79A2DE3E111BBCD0B4DFBAD1D8FCBE394CBFC2A759087B985EF5DAA1553D995017A7A1171AF03E432638AB9F7D019635067608A737F9545C2E17DE5B43AEAF0B54BC5FD',
-        '_gat': '1 ',
-        '_ga': 'GA1.4.1335402241.1496105804',
-         '_gid': 'GA1.4.730554077.1496142416'
-        }
+        # # Genere les urls pour les pool des données
+        # rs = (grequests.get(
+        #     urlbase + str(key["n"]),
+        #     cookies=cookies
+        # )
+        #     for key in redis.get('activity_data')
+        # )
 
-        # Genere les urls pour les pool des données
-        rs = (grequests.get(
-            urlbase + str(key["n"]),
-            cookies=cookies
-        )
-            for key in redis.get('activity_data')
-        )
-
-        # Fais la requetes des données et les stocke sous
-        # answer = (reponse1,reponse2,...,response n)
-        answer = grequests.map(rs)
-
+        # # Fais la requetes des données et les stocke sous
+        # # answer = (reponse1,reponse2,...,response n)
+        # answer = grequests.map(rs)
         data = json.loads(redis.get('activity_data'))
         # print(answer)
 
         # # pour chaque chambre de la liste
         for room in data:
 
-            ro_n = json.loads(answer[int(room["n"]) - 1].text)
+            # print(answer[int(room["n"])].text)
+            # ro_n = json.loads(answer[int(room["n"]) - 1].text)
 
             # Update last event for each room
-            room['lastEvent'] = ro_n['room']['lastEvent']
-            print(room['lastEvent'])
+            # room['lastEvent'] = ro_n['room']['lastEvent']
+
             # Random last event for each room
             room['lastEvent'] = random.choice(evenement)
 

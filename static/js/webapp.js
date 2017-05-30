@@ -1,16 +1,11 @@
 $("#log-screen").click(function openNav() {
     $("#mySidenav").width("100%");
-    var on = true;
     /*    document.getElementById("main").style.marginLeft = "100%";*/
 });
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 $("#acti-screen").click(function closeNav() {
-    if (on) {
-        $("#mySidenav").width("20%");
-        var on = false;
-        /*    $("#main").style.marginRight= "20%"; */
-    };
+    $("#mySidenav").width("20%");
 });
 
 function changeImage(id, a) {
@@ -21,7 +16,21 @@ function changeText(id,t) {
     document.getElementById(id).innerText = t;
 }
 
+var chargement = document.createElement("div");
+chargement.setAttribute("class", "h1");
+chargement.innerText = "Chargement en cours...";
+chargement.id = "chargement"
 
+var nothing = document.createElement("div");
+nothing.setAttribute("class", "h1");
+nothing.innerText = "Les residents sont calmes";
+nothing.id="nothing"
+
+/*if ($('.floating-box : visible') == None) {
+    if (!initial) {
+        monitoring.append(nothing)
+    }
+}*/
 
 function initiate(data) {
     data.forEach(function create(val) {

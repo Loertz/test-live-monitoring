@@ -107,10 +107,11 @@ STYLE : BOX OF THE MONITORING APPLICATION
 
 .nom{
     color: #666;
-    font-size: 10px;
+    font-size: 14px;
     font-weight: normal;
     letter-spacing: 1px;
     margin : 1px;
+    margin-right: 10%;
 }
 
 .contenu{
@@ -119,7 +120,7 @@ STYLE : BOX OF THE MONITORING APPLICATION
     font-weight: 300;
     line-height: 26px;
     letter-spacing: 1px;
-    right : 0;
+    margin-left: 10%;
 }
 
 
