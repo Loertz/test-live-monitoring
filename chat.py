@@ -112,7 +112,7 @@ class LiveMonitoringBackend(object):
             urlbase + str(key["n"]),
             cookies=cookies
         )
-            for key in redis.get('activity_data')
+            for key in json.loads(redis.get('activity_data'))
         )
 
         # Fais la requetes des données et les stocke sous
