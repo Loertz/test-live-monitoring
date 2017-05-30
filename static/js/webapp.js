@@ -19,7 +19,7 @@ function changeText(id,t) {
 function evenement (a){
     var event = document.createElement("h1");
     event.innerText = a ;
-    ("#mySidenav").prepend(event) ;
+    $("#mySidenav").prepend(event) ;
 };
 
 var chargement = document.createElement("div");
