@@ -5,7 +5,7 @@ TOP HEADER
 
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: #0066ff;
+    background-color: #336699;
     overflow: hidden;
     z-index: 1; /* Stay on top */
 }
@@ -45,7 +45,7 @@ SIDE NAVIGATION MENU
 
     top: 40;
     right: 0;
-    background-color: #0066ff; /* Blue*/
+    background-color: #336699; /* Blue*/
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -109,7 +109,7 @@ STYLE : BOX OF THE MONITORING APPLICATION
     color: #666;
     font-size: 10px;
     font-weight: normal;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     margin : 1px;
 }
 
@@ -118,7 +118,8 @@ STYLE : BOX OF THE MONITORING APPLICATION
     font-size: 20px;
     font-weight: 300;
     line-height: 26px;
-    letter-spacing: 0.2px;
+    letter-spacing: 1px;
+    right : 0;
 }
 
 
@@ -138,6 +139,7 @@ STYLE : BOX OF THE MONITORING APPLICATION
 body{
     background-color : #006633;
 }
+
 
 /*---------------------------------------
     Button Switch

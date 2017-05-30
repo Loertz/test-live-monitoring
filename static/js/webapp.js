@@ -1,5 +1,5 @@
 $("#log-screen").click(function openNav() {
-    $("#mySidenav").style.width = "100%";
+    $("#mySidenav")width("100%");
     var on = true;
     /*    document.getElementById("main").style.marginLeft = "100%";*/
 });
@@ -7,7 +7,7 @@ $("#log-screen").click(function openNav() {
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 $("#acti-screen").click(function closeNav() {
     if (on) {
-        $("#mySidenav").style.width = "20%";
+        $("#mySidenav")width("20%");
         var on = false;
         /*    $("#main").style.marginRight= "20%"; */
     };
@@ -34,8 +34,9 @@ function initiate(data) {
         info.setAttribute("class", "nom");
         info.innerText = val.name + "\n" + "Chambre : " + val.n.toString();
 
-        var icon = new Image(20, 20);
+        var icon = new Image(40, 40);
         icon.setAttribute("src", "static/image/bedroom.png");
+        icon.setAttribute("style","right:0")
         icon.id = "icon-" + val.n.toString();
 
         var dur = document.createElement("div");
@@ -70,7 +71,6 @@ function update_css(data) {
             if (val.lastEvent == "BEDROOM") {
                     /* $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
                 changeImage("icon-" + val.n.toString(), "static/image/bedroom.png")
-                console.log(changeImage("icon-" + val.n.toString(), "static/image/bedroom.png"))
 
             } else if (val.lastEvent == "BATHROOM") {
                 /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
