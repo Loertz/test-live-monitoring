@@ -145,7 +145,7 @@ class LiveMonitoringBackend(object):
         # print(data)
 
         # Trie les chambres par actvités
-        data = sorted(data, key=lambda room: room['tmc'])
+        data = sorted(data, key=lambda room: room['tmc'])[::-1]
 
         redis.set('activity_data', json.dumps(data))
         # app.logger.info(u'Inserting message: {}'.format(message))
