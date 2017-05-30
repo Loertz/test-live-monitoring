@@ -22,7 +22,7 @@ function evenement (a){
     $("#eventbar").prepend(event) ;
 };
 
-if ($('.floating-box : visible') == None) {
+if ( $(".floating-box : visible") == None) {
     if (!initial) {
         $("#chargement").toggle(true);
         $("#nothing").toggle(false);
@@ -33,7 +33,7 @@ if ($('.floating-box : visible') == None) {
 } else {
     $("#chargement").toggle(false);
     $("#nothing").toggle(false);
-}
+};
 
 function initiate(data) {
     data.forEach(function create(val) {
@@ -106,7 +106,7 @@ function update_css(data) {
     });
 };
 
-var myArray = $(".floating-box");
+/*var myArray = $(".floating-box");
 var count = 0;
 
 // sort based on timestamp attribute
@@ -129,3 +129,4 @@ myArray.sort(function (a, b) {
 // put sorted results back on page
 $("#results").append(myArray);
 $("#calls").append(count+1);
+*/
