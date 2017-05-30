@@ -1,5 +1,5 @@
 $("#log-screen").click(function openNav() {
-    $("#mySidenav")width("100%");
+    $("#mySidenav").width("100%");
     var on = true;
     /*    document.getElementById("main").style.marginLeft = "100%";*/
 });
@@ -7,7 +7,7 @@ $("#log-screen").click(function openNav() {
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 $("#acti-screen").click(function closeNav() {
     if (on) {
-        $("#mySidenav")width("20%");
+        $("#mySidenav").width("20%");
         var on = false;
         /*    $("#main").style.marginRight= "20%"; */
     };
