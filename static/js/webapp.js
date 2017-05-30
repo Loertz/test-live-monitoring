@@ -53,9 +53,10 @@ function update_css(data) {
         if (val.acti == "") {
 
             $("#tmc-" + val.n.toString()).innerText = "0";
-            $("#room-" + val.n.toString()).toggle(display);
+            $("#room-" + val.n.toString()).toggle(false);
             /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
         } else {
+            $("#room-" + val.n.toString()).toggle(true);
             $("#tmc-" + val.n.toString()).innerText = val.tmc.toString();
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
             if (val.lastEvent == "BEDROOM") {
