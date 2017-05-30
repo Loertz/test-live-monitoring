@@ -152,7 +152,7 @@ body{
     background-color : #006633;
 }
 
-.p {
+p {
     float : center;
     border-width: 5px;
     border-color: white;
