@@ -17,20 +17,20 @@ function changeText(id,t) {
 };
 
 function evenement (a){
-    var alerte = document.createElement("l");
-    alerte.innerText = a
-    ("#mySidenav").prepend(alerte)
+    var event = document.createElement("h1");
+    event.innerText = a ;
+    ("#mySidenav").prepend(event) ;
 };
 
 var chargement = document.createElement("div");
 chargement.setAttribute("class", "h1");
 chargement.innerText = "Chargement en cours...";
-chargement.id = "chargement"
+chargement.id = "chargement";
 
 var nothing = document.createElement("div");
 nothing.setAttribute("class", "h1");
 nothing.innerText = "Les residents sont calmes";
-nothing.id="nothing"
+nothing.id="nothing";
 
 /*if ($('.floating-box : visible') == None) {
     if (!initial) {
@@ -74,7 +74,7 @@ function update_css(data) {
     data.forEach(function creat(val) {
         if (val.tmc<5) {
 
-            changeText("tmc-"+val.n.toString(),"0")
+            changeText("tmc-"+val.n.toString(),"0");
 /*            $("#tmc-" + val.n.toString()).innerText = "0";*/
             $("#room-" + val.n.toString()).toggle(false);
             /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
@@ -82,25 +82,25 @@ function update_css(data) {
         } else {
 
             $("#room-" + val.n.toString()).toggle(true);
-            changeText("tmc-"+val.n.toString(),val.tmc)
+            changeText("tmc-"+val.n.toString(),val.tmc);
             // $("#tmc-" + val.n.toString()).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
             if (val.tmc == 40 ){
-                            evenement( val.name + "est en activité depuis 40 mn")
+                            evenement( val.name + "est en activité depuis 40 mn");
                         }
 
             if (val.lastEvent == "BEDROOM") {
                     /* $("#room-" + val.n.toString() ).style.backgroundColor = "#f2f2f2";*/
-                changeImage("icon-" + val.n.toString(), "static/image/chambreori.png")
+                changeImage("icon-" + val.n.toString(), "static/image/chambreori.png");
 
             } else if (val.lastEvent == "BATHROOM") {
 
                 /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
-                changeImage("icon-" + val.n.toString(), "static/image/showerori.svg")
+                changeImage("icon-" + val.n.toString(), "static/image/showerori.svg");
 
             } else if (val.lastEvent == "FALL") {
 
-                evenement(val.name +"a chuté")
+                evenement(val.name +" a chuté")
 
             } else {
 
