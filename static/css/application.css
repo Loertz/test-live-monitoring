@@ -137,6 +137,17 @@ STYLE : BOX OF THE MONITORING APPLICATION
     background-image: url("static/image/shower.svg");
 }
 
+.place{
+    color: #666;
+    float : center;
+    display: none;
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin : 1px;
+    margin-right: 10%;
+}
+
 body{
     background-color : #006633;
 }
