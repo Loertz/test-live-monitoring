@@ -35,7 +35,7 @@ function initiate(data) {
         info.innerText = val.name + "\n" + "Chambre : " + val.n.toString();
 
         var icon = new Image(40, 40);
-        icon.setAttribute("src", "static/image/bedroom.png");
+        icon.setAttribute("src", "static/image/chambreori.png");
         icon.setAttribute("style","right:0")
         icon.id = "icon-" + val.n.toString();
 

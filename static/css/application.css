@@ -56,9 +56,9 @@ SIDE NAVIGATION MENU
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #ffffff;
     display: block;
-    transition: 0.3s
+    transition: 0.3s;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -152,6 +152,11 @@ body{
     background-color : #006633;
 }
 
+.p {
+    float : center;
+    border-width: 5px;
+    border-color: white;
+}
 
 /*---------------------------------------
     Button Switch
