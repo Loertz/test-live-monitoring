@@ -66,7 +66,7 @@ function initiate(data) {
 
 function update_css(data) {
     data.forEach(function creat(val) {
-        if (val.acti == "") {
+        if (val.tmc<5) {
             changeText("tmc-"+val.n.toString(),"0")
 /*            $("#tmc-" + val.n.toString()).innerText = "0";*/
             $("#room-" + val.n.toString()).toggle(false);
@@ -92,3 +92,27 @@ function update_css(data) {
         };
     });
 };
+
+var myArray = $(".floating");
+var count = 0;
+
+// sort based on timestamp attribute
+myArray.sort(function (a, b) {
+
+    // convert to integers from strings
+    a = parseInt($(a).attr("timestamp"), 10);
+    b = parseInt($(b).attr("timestamp"), 10);
+    count += 2;
+    // compare
+    if(a > b) {
+        return 1;
+    } else if(a < b) {
+        return -1;
+    } else {
+        return 0;
+    }
+});
+
+// put sorted results back on page
+$("#results").append(myArray);
+$("#calls").append(count+1);

@@ -128,7 +128,7 @@ class LiveMonitoringBackend(object):
             ro_n = json.loads(answer[i].text)
             i += 1
             # Update last event for each room
-            print(ro_n)
+            print(ro_n['room']['lastEvent'])
 
             # Random last event for each room
             room['lastEvent'] = random.choice(evenement)
