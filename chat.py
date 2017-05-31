@@ -169,6 +169,7 @@ livemonitoring.start()
 @app.route('/')
 def hello():
     return render_template('index.html')
+    gevent.sleep(5)
     redis.publish(REDIS_CHAN, redis.get('activity_data'))
 # @sockets.route('/submit')
 # def inbox(ws):

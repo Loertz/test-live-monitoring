@@ -29,6 +29,7 @@ function initiate(data) {
         var box = document.createElement("div");
         box.setAttribute("class", "floating-box");
         box.id = "room-" + val.n.toString();
+        box.setAttribute('data', val.tmc);
 
         var info = document.createElement("div");
         info.setAttribute("class", "nom");
@@ -39,10 +40,12 @@ function initiate(data) {
         icon.setAttribute("style","right:0")
         icon.id = "icon-" + val.n.toString();
 
+
+/*          mn par resident           ->
         var dur = document.createElement("div");
         dur.setAttribute("class", "contenu");
         dur.innerText = val.tmc.toString() + " mn";
-        dur.id = "tmc-" + val.n.toString();
+        dur.id = "tmc-" + val.n.toString();*/
 
 
         box.appendChild(info);
@@ -67,7 +70,7 @@ function update_css(data) {
         } else {
 
             $("#room-" + val.n.toString()).toggle(true);
-            changeText("tmc-"+val.n.toString(),val.tmc + "mn");
+            $("tmc-"+val.n.toString()).data('tmc', val.tmc);
             // $("#tmc-" + val.n.toString()).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
             if (val.tmc == 40 ){
@@ -92,6 +95,12 @@ function update_css(data) {
             };
         };
     });
+
+    $(".floating-box").sort(sort_li).appendTo('#monitoring');
+    function sort_li(a, b){
+        return ($(b).data('tmc')) < ($(a).data('tmc')) ? 1 : -1;
+    }
+
 };
 
 /*var myArray = $(".floating-box");
