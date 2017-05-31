@@ -117,15 +117,15 @@ class LiveMonitoringBackend(object):
 
         # Fais la requetes des données et les stocke sous
         # answer = (reponse1,reponse2,...,response n)
-        try : answer = grequests.map(rs)
-        except : print('failed to load')
+        answer = grequests.map(rs)
+        print('failed to load')
         data = json.loads(redis.get('activity_data'))
-        # print(answer)
+        print(answer)
         i = 0
         # # pour chaque chambre de la liste
         for room in data:
 
-            ro_n = json.loads(answer[i].text)
+
             i += 1
             # Update last event for each room
             print(ro_n['room']['lastEvent'])
