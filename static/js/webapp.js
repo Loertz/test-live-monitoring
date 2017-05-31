@@ -67,6 +67,11 @@ function initiate(data) {
 
 function update_css(data) {
     data.forEach(function creat(val) {
+         if (val.lastEvent == "FALL") {
+
+                evenement(val.name +" a chuté")
+
+            } ;
         if (val.tmc<5) {
 
             $("#room-" + val.n.toString()).attr('data', val.tmc);
@@ -94,11 +99,7 @@ function update_css(data) {
                 /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
                 changeImage("icon-" + val.n.toString(), "static/image/showerori.svg");
 
-            } else if (val.lastEvent == "FALL") {
-
-                evenement(val.name +" a chuté")
-
-            } else {
+            }  else {
 
             };
         };
