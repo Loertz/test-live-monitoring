@@ -118,7 +118,7 @@ class LiveMonitoringBackend(object):
         # Fais la requetes des données et les stocke sous
         # answer = (reponse1,reponse2,...,response n)
         try : answer = grequests.map(rs)
-    except : print('failed to load')
+        except : print('failed to load')
         data = json.loads(redis.get('activity_data'))
         # print(answer)
         i = 0
