@@ -22,6 +22,12 @@ function evenement (a){
     $("#eventbar").prepend(event).fadeIn() ;
 };
 
+function* idMaker(a) {
+    var index = 0;
+    while(true)
+        yield index++;
+}
+
 
 function initiate(data) {
     data.forEach(function create(val) {
@@ -40,7 +46,6 @@ function initiate(data) {
         icon.setAttribute("style","right:0")
         icon.id = "icon-" + val.n.toString();
 
-
 /*          mn par resident           ->
         var dur = document.createElement("div");
         dur.setAttribute("class", "contenu");
@@ -56,6 +61,8 @@ function initiate(data) {
 
     });
 };
+
+
 
 
 function update_css(data) {
@@ -74,7 +81,7 @@ function update_css(data) {
             // $("#tmc-" + val.n.toString()).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
             if (val.tmc == 30 ){
-                            evenement( val.name + " est en activité depuis 40 mn");
+                            evenement( val.name + " est en activité depuis 30 mn");
                         }
 
             if (val.lastEvent == "BEDROOM") {
@@ -82,7 +89,7 @@ function update_css(data) {
                 changeImage("icon-" + val.n.toString(), "static/image/chambreori.png");
 
             } else if (val.lastEvent == "BATHROOM") {
-                evenement( val.name + " est rentré en salle de bain" + val)
+
 
                 /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
                 changeImage("icon-" + val.n.toString(), "static/image/showerori.svg");
