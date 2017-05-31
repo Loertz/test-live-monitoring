@@ -105,10 +105,10 @@ function update_css(data) {
         };
     });
 
-    $(".floating-box").sort(sort_li).appendTo('#monitoring');
+/*    $(".floating-box").sort(sort_li).appendTo('#monitoring');
     function sort_li(a, b){
         return ($(b).data < ($(a).data ? 1 : -1;
-    }
+    }*/
 
 };
 
