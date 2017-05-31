@@ -187,7 +187,6 @@ def hello():
 def outbox(ws):
     """Sends outgoing chat messages, via `LiveMonitoringBackend`."""
     livemonitoring.register(ws)
-    redis.publish(REDIS_CHAN, redis.get('activity_data'))
     while not ws.closed:
 
         # Context switch while `LiveMonitoringBackend.start'
