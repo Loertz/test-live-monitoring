@@ -19,7 +19,8 @@ function changeText(id,t) {
 function evenement (a){
     var event = document.createElement("p");
     event.innerText = a ;
-    $("#eventbar").prepend(event) ;
+    event.setAttribute( "background-color", "white");
+    $("#eventbar").prepend(event).fadeIn() ;
 };
 
 
@@ -73,8 +74,8 @@ function update_css(data) {
             $("#room-" + val.n.toString()).data('tmc', val.tmc);
             // $("#tmc-" + val.n.toString()).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
-            if (val.tmc == 40 ){
-                            evenement( val.name + "est en activité depuis 40 mn");
+            if (val.tmc == 30 ){
+                            evenement( val.name + " est en activité depuis 40 mn");
                         }
 
             if (val.lastEvent == "BEDROOM") {
@@ -82,6 +83,7 @@ function update_css(data) {
                 changeImage("icon-" + val.n.toString(), "static/image/chambreori.png");
 
             } else if (val.lastEvent == "BATHROOM") {
+                evenement( val.name + " est rentré en salle de bain" + val)
 
                 /*$("#room-" + val.n.toString() ).style.backgroundColor = "#1D7FB2";*/
                 changeImage("icon-" + val.n.toString(), "static/image/showerori.svg");
