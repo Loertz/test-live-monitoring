@@ -62,7 +62,7 @@ function update_css(data) {
     data.forEach(function creat(val) {
         if (val.tmc<5) {
 
-            $("#room-" + val.n.toString()).data( val.tmc);
+            $("#room-" + val.n.toString()).attr('data', val.tmc);
 /*            $("#tmc-" + val.n.toString()).innerText = "0";*/
             $("#room-" + val.n.toString()).toggle(false);
             /*$("room-"+val.n.toString()).style.backgroundColor = "#f2f2f2"*/
@@ -70,7 +70,7 @@ function update_css(data) {
         } else {
 
             $("#room-" + val.n.toString()).toggle(true);
-            $("#room-" + val.n.toString()).data( val.tmc);
+            $("#room-" + val.n.toString()).attr("data", val.tmc);
             // $("#tmc-" + val.n.toString()).innerText = val.tmc;
             /*bleu :#1D7FB2; vert : #8C8910; rouge : #CA1725; gris :#f2f2f2;*/
             if (val.tmc == 30 ){
