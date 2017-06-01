@@ -30,7 +30,7 @@ redis = redis.from_url(REDIS_URL)
 redis.set('before', time.time())
 redis.set('activity_data', json.dumps([
     {
-        "name": "Johnny" + str(i),
+        "name": "Nom" ,
         "n": i,
         "lastEvent": "BEDROOM",
         "tmc": 0,
@@ -93,6 +93,7 @@ class LiveMonitoringBackend(object):
 
     def update(self):
 
+        data = json.loads(redis.get('activity_data'))
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
         urlbase = 'http://front.recipe.fim-team.net/api/monitoring/room/FMDEV.500.'
 
@@ -112,26 +113,22 @@ class LiveMonitoringBackend(object):
             urlbase + str(key["n"]),
             cookies=cookies
         )
-            for key in json.loads(redis.get('activity_data'))
+            for key in data
         )
 
         # Fais la requetes des données et les stocke sous
         # answer = (reponse1,reponse2,...,response n)
         answer = grequests.map(rs)
-        print('failed to load')
-        data = json.loads(redis.get('activity_data'))
+
         print(answer)
-        i = 0
+
         # # pour chaque chambre de la liste
-        for room in data:
+        for i,room in enumerate(data):
 
-
-            i += 1
+            ro_n = json.loads(answer[i].text)
             # Update last event for each room
             # print(ro_n['room']['lastEvent'])
-
-            # Random last event for each room
-            room['lastEvent'] = random.choice(evenement)
+            room['lastEvent'] = ro_n['room']['lastEvent']
 
             if room['lastEvent'] in eventactif:
                 room['acti'] += '1'

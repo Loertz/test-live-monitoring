@@ -30,13 +30,14 @@ redis = redis.from_url(REDIS_URL)
 redis.set('before', time.time())
 redis.set('activity_data', json.dumps([
     {
-        "name": "Johnny",
+        "name": "Johnny" + str(i),
         "n": i,
         "lastEvent": "BEDROOM",
         "tmc": 0,
-        "acti": ""
+        "acti": "",
+        "dep":""
     }
-    for i in range(1, 16)
+    for i in range(111, 116)
 ]))
 
 
@@ -93,24 +94,127 @@ class LiveMonitoringBackend(object):
 
     def update(self):
 
+        data = json.loads(redis.get('activity_data'))
+
+
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
+        urlbase = 'http://care.floorinmotion.com/api/monitoring/room/STOUEN.Dept' +2 + '.' + 204
+
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
         evenement = ('BEDROOM', 'BATHROOM', 'FALL', 'ABSENCE', 'PRESENCE')
-        # cookies = {
-        #     'AWSELB':
-# '8BCBC7510619CE27DBBB694C8CC7E2F7DBEB7FF9997C562F58EF73D4C9B622B6CAF89A6E1F6146C1DFBCA6F975C6A21363A378B900A183886E855F85B3F76B607892CC1D99100F3545F02F3166B37746BF29432B23',
-        #     'JSESSIONID': '736FEE21BD03C31BCDDDAE9D9858D265',
-        #     '_ga': "GA1.3.755786443.1493122168",
-        #     '_gid': "GA1.3.903882648.1494921861",
-        # }
 
-        # # Genere les urls pour les pool des données
-        # rs = (grequests.get(
-        #     urlbase + str(key["n"]),
-        #     cookies=cookies
-        # )
-        #     for key in redis.get('activity_data')
-        # )
+
+
+        cookies = {
+            'AWSELB':
+'8BCBC7510619CE27DBBB694C8CC7E2F7DBEB7FF9997C562F58EF73D4C9B622B6CAF89A6E1F6146C1DFBCA6F975C6A21363A378B900A183886E855F85B3F76B607892CC1D99100F3545F02F3166B37746BF29432B23',
+            'JSESSIONID': '736FEE21BD03C31BCDDDAE9D9858D265',
+            '_ga': "GA1.3.755786443.1493122168",
+            '_gid': "GA1.3.903882648.1494921861",
+        }
+
+        # Genere les urls pour les pool des données
+        rs = (grequests.get(
+            urlbase + str(key["n"]),
+            cookies=cookies
+        )
+            for key in data
+        )
+
+        # Fais la requetes des données et les stocke sous
+        # answer = (reponse1,reponse2,...,response n)
+        answer = grequests.map(rs)
+
+        print(answer)
+
+        i = 0
+        # # pour chaque chambre de la liste
+        for room in data:
+
+            i += 1
+            ro_n = json.loads(answer[int(room["n"]) - 1].text)
+            # Update last event for each room
+            # print(ro_n['room']['lastEvent'])
+            room['lastEvent'] = ro_n['room']['lastEvent']
+
+            # Random last event for each room
+            # room['lastEvent'] = random.choice(evenement)
+
+            if room['lastEvent'] in eventactif:
+                room['acti'] += '1'
+            else:
+                room['acti'] += '0'
+
+            if '00000' in room['acti'] or '1' not in room['acti']:
+                room['tmc'] = 0
+                room['acti'] = ''
+            else:
+                room['tmc'] = int(len(room['acti']) / 5) * 5
+            # update data
+
+        # print(data)
+
+        # Trie les chambres par actvités
+        data = sorted(data, key=lambda room: room['tmc'])[::-1]
+
+        redis.set('activity_data', json.dumps(data))
+        # app.logger.info(u'Inserting message: {}'.format(message))
+        # redis.publish(REDIS_CHAN, message)
+
+        return True
+
+    def start(self):
+        """Maintains Redis subscription in the background."""
+        gevent.spawn(self.run)
+        gevent.spawn(self.run_time, self.update, 60)
+
+
+livemonitoring = LiveMonitoringBackend()
+livemonitoring.start()
+
+
+@app.route('/')
+def hello():
+    return render_template('index.html')
+
+# @sockets.route('/submit')
+# def inbox(ws):
+#     """Receives incoming chat messages, inserts them into Redis."""
+#     while not ws.closed:
+#         # Sleep to prevent *contstant* context-switches.
+#         gevent.sleep(0.1)
+#         message = ws.receive()
+
+#         if message:
+#             app.logger.info(u'Inserting message: {}'.format(message))
+#             redis.publish(REDIS_CHAN, message)
+
+
+@sockets.route('/receive')
+def outbox(ws):
+    """Sends outgoing chat messages, via `LiveMonitoringBackend`."""
+    livemonitoring.register(ws)
+    while not ws.closed:
+
+        # Context switch while `LiveMonitoringBackend.start'
+        # is running in the background.
+        gevent.sleep(0.1)
+
+
+
+
+
+
+        "name": "Johnny",
+        "n": i,
+        "lastEvent": "BEDROOM",
+        "tmc": 0,
+        "acti": ""
+    }
+    for i in range(1, 16)
+]))
+
+
 
         # # Fais la requetes des données et les stocke sous
         # # answer = (reponse1,reponse2,...,response n)
@@ -150,43 +254,5 @@ class LiveMonitoringBackend(object):
         redis.set('activity_data', json.dumps(data))
         # app.logger.info(u'Inserting message: {}'.format(message))
         # redis.publish(REDIS_CHAN, message)
-
-        return True
-
-    def start(self):
-        """Maintains Redis subscription in the background."""
-        gevent.spawn(self.run)
-        gevent.spawn(self.run_time, self.update, 60)
-
-
-livemonitoring = LiveMonitoringBackend()
-livemonitoring.start()
-
-
-@app.route('/')
-def hello():
-    return render_template('index.html')
-    redis.publish(REDIS_CHAN, redis.get('activity_data'))
-# @sockets.route('/submit')
-# def inbox(ws):
-#     """Receives incoming chat messages, inserts them into Redis."""
-#     while not ws.closed:
-#         # Sleep to prevent *contstant* context-switches.
-#         gevent.sleep(0.1)
-#         message = ws.receive()
-
-#         if message:
-#             app.logger.info(u'Inserting message: {}'.format(message))
-#             redis.publish(REDIS_CHAN, message)
-
-
-@sockets.route('/receive')
-def outbox(ws):
-    """Sends outgoing chat messages, via `LiveMonitoringBackend`."""
-    livemonitoring.register(ws)
-
-    while not ws.closed:
-
-        # Context switch while `LiveMonitoringBackend.start'
-        # is running in the background.
+.
         gevent.sleep(0.1)
