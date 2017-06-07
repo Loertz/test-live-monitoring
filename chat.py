@@ -95,39 +95,40 @@ class LiveMonitoringBackend(object):
 
         data = json.loads(redis.get('activity_data'))
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
-        urlbase = 'http://front.recipe.fim-team.net/api/monitoring/room/FMDEV.500.'
+        # urlbase = 'http://front.recipe.fim-team.net/api/monitoring/room/FMDEV.500.'
 
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
         evenement = ('BEDROOM', 'BATHROOM', 'FALL', 'ABSENCE', 'PRESENCE')
 
-        cookies = {
-        'JSESSIONID': '484886F867C4463491FDD873208123DC',
-        'AWSELB': '9913C50D10591FEE0CB0FFE69B89039701A79A2DE3E111BBCD0B4DFBAD1D8FCBE394CBFC2A759087B985EF5DAA1553D995017A7A1171AF03E432638AB9F7D019635067608A737F9545C2E17DE5B43AEAF0B54BC5FD',
-        '_gat': '1 ',
-        '_ga': 'GA1.4.1335402241.1496105804',
-         '_gid': 'GA1.4.730554077.1496142416'
-        }
+        # cookies = {
+        # 'JSESSIONID': '484886F867C4463491FDD873208123DC',
+        # 'AWSELB': '9913C50D10591FEE0CB0FFE69B89039701A79A2DE3E111BBCD0B4DFBAD1D8FCBE394CBFC2A759087B985EF5DAA1553D995017A7A1171AF03E432638AB9F7D019635067608A737F9545C2E17DE5B43AEAF0B54BC5FD',
+        # '_gat': '1 ',
+        # '_ga': 'GA1.4.1335402241.1496105804',
+        #  '_gid': 'GA1.4.730554077.1496142416'
+        # }
 
         # Genere les urls pour les pool des données
-        rs = (grequests.get(
-            urlbase + str(key["n"]),
-            cookies=cookies
-        )
-            for key in data
-        )
+        # rs = (grequests.get(
+        #     urlbase + str(key["n"]),
+        #     cookies=cookies
+        # )
+        #     for key in data
+        # )
 
         # Fais la requetes des données et les stocke sous
         # answer = (reponse1,reponse2,...,response n)
-        answer = grequests.map(rs)
-        print(answer)
+        # answer = grequests.map(rs)
+
+        # print(answer)
 
         # # pour chaque chambre de la liste
         for i,room in enumerate(data):
 
-            ro_n = json.loads(answer[i].text)
+            # ro_n = json.loads(answer[i].text)
             # Update last event for each room
             # print(ro_n['room']['lastEvent'])
-            room['lastEvent'] = ro_n['room']['lastEvent']
+            room['lastEvent'] = random.choice(evenement)
 
             if room['lastEvent'] in eventactif:
                 room['acti'] += '1'
