@@ -98,7 +98,7 @@ class LiveMonitoringBackend(object):
 
 
         # urlbase = 'http://care.floorinmotion.com/api/' + 'monitoring/I4.A.'
-        urlbase = 'http://care.floorinmotion.com/api/monitoring/room/STOUEN.Dept' +2 + '.' + 204
+        urlbase = 'http://care.floorinmotion.com/api/monitoring/room/STOUEN.Dept'
 
         eventactif = ('BEDROOM', 'BATHROOM', 'FALL')
         evenement = ('BEDROOM', 'BATHROOM', 'FALL', 'ABSENCE', 'PRESENCE')
@@ -115,7 +115,7 @@ class LiveMonitoringBackend(object):
 
         # Genere les urls pour les pool des données
         rs = (grequests.get(
-            urlbase + str(key["n"]),
+            urlbase + str(key["n"])[0] + '.' + str(key["n"]),
             cookies=cookies
         )
             for key in data
@@ -200,19 +200,6 @@ def outbox(ws):
         # is running in the background.
         gevent.sleep(0.1)
 
-
-
-
-
-
-        "name": "Johnny",
-        "n": i,
-        "lastEvent": "BEDROOM",
-        "tmc": 0,
-        "acti": ""
-    }
-    for i in range(1, 16)
-]))
 
 
 

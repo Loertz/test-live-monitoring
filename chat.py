@@ -119,7 +119,6 @@ class LiveMonitoringBackend(object):
         # Fais la requetes des données et les stocke sous
         # answer = (reponse1,reponse2,...,response n)
         answer = grequests.map(rs)
-
         print(answer)
 
         # # pour chaque chambre de la liste
