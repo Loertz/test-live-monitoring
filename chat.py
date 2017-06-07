@@ -89,6 +89,7 @@ class LiveMonitoringBackend(object):
                 redis.set('before', time.time())
                 print('updated')
                 redis.publish(REDIS_CHAN, redis.get('activity_data'))
+                gevent.sleep(interval / 10)
             gevent.sleep(interval / 10)
 
     def update(self):
