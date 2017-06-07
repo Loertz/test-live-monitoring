@@ -33,11 +33,11 @@ $(document).ready(function() {
   };
 
 
-  inbox.onclose = function(error) {
+/*  inbox.onclose = function(error) {
     console.log(error.code);
     this.inbox = new WebSocket(inbox.url);
   };
-});
+});*/
 
 /*
 $("#chat-text").append("<div class='panel panel-default'><div class='panel-heading'>" + $('<span/>').text(data.handle).html() + "</div><div class='panel-body'>" + $('<span/>').text(data.text).html() + "</div></div>");
